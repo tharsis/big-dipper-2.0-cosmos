@@ -483,6 +483,7 @@ export type Account_Balance_Bool_Exp = {
   block?: Maybe<Block_Bool_Exp>;
   coins?: Maybe<_Coin_Comparison_Exp>;
   height?: Maybe<Bigint_Comparison_Exp>;
+  tokens_prices?: Maybe<Token_Price_Bool_Exp>;
 };
 
 /** columns and relationships of "account_balance_history" */
@@ -554,6 +555,7 @@ export type Account_Balance_History_Bool_Exp = {
   redelegating?: Maybe<_Coin_Comparison_Exp>;
   reward?: Maybe<_Dec_Coin_Comparison_Exp>;
   timestamp?: Maybe<Timestamp_Comparison_Exp>;
+  token_prices_history?: Maybe<Token_Price_History_Bool_Exp>;
   unbonding?: Maybe<_Coin_Comparison_Exp>;
 };
 
@@ -2982,143 +2984,6 @@ export type Community_Pool_Variance_Fields = {
   height?: Maybe<Scalars['Float']>;
 };
 
-/** columns and relationships of "consensus" */
-export type Consensus = {
-  __typename?: 'consensus';
-  height: Scalars['bigint'];
-  round: Scalars['Int'];
-  step: Scalars['String'];
-};
-
-/** aggregated selection of "consensus" */
-export type Consensus_Aggregate = {
-  __typename?: 'consensus_aggregate';
-  aggregate?: Maybe<Consensus_Aggregate_Fields>;
-  nodes: Array<Consensus>;
-};
-
-/** aggregate fields of "consensus" */
-export type Consensus_Aggregate_Fields = {
-  __typename?: 'consensus_aggregate_fields';
-  avg?: Maybe<Consensus_Avg_Fields>;
-  count: Scalars['Int'];
-  max?: Maybe<Consensus_Max_Fields>;
-  min?: Maybe<Consensus_Min_Fields>;
-  stddev?: Maybe<Consensus_Stddev_Fields>;
-  stddev_pop?: Maybe<Consensus_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Consensus_Stddev_Samp_Fields>;
-  sum?: Maybe<Consensus_Sum_Fields>;
-  var_pop?: Maybe<Consensus_Var_Pop_Fields>;
-  var_samp?: Maybe<Consensus_Var_Samp_Fields>;
-  variance?: Maybe<Consensus_Variance_Fields>;
-};
-
-
-/** aggregate fields of "consensus" */
-export type Consensus_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Consensus_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** aggregate avg on columns */
-export type Consensus_Avg_Fields = {
-  __typename?: 'consensus_avg_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
-/** Boolean expression to filter rows from the table "consensus". All fields are combined with a logical 'AND'. */
-export type Consensus_Bool_Exp = {
-  _and?: Maybe<Array<Consensus_Bool_Exp>>;
-  _not?: Maybe<Consensus_Bool_Exp>;
-  _or?: Maybe<Array<Consensus_Bool_Exp>>;
-  height?: Maybe<Bigint_Comparison_Exp>;
-  round?: Maybe<Int_Comparison_Exp>;
-  step?: Maybe<String_Comparison_Exp>;
-};
-
-/** aggregate max on columns */
-export type Consensus_Max_Fields = {
-  __typename?: 'consensus_max_fields';
-  height?: Maybe<Scalars['bigint']>;
-  round?: Maybe<Scalars['Int']>;
-  step?: Maybe<Scalars['String']>;
-};
-
-/** aggregate min on columns */
-export type Consensus_Min_Fields = {
-  __typename?: 'consensus_min_fields';
-  height?: Maybe<Scalars['bigint']>;
-  round?: Maybe<Scalars['Int']>;
-  step?: Maybe<Scalars['String']>;
-};
-
-/** Ordering options when selecting data from "consensus". */
-export type Consensus_Order_By = {
-  height?: Maybe<Order_By>;
-  round?: Maybe<Order_By>;
-  step?: Maybe<Order_By>;
-};
-
-/** select columns of table "consensus" */
-export enum Consensus_Select_Column {
-  /** column name */
-  Height = 'height',
-  /** column name */
-  Round = 'round',
-  /** column name */
-  Step = 'step'
-}
-
-/** aggregate stddev on columns */
-export type Consensus_Stddev_Fields = {
-  __typename?: 'consensus_stddev_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Consensus_Stddev_Pop_Fields = {
-  __typename?: 'consensus_stddev_pop_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Consensus_Stddev_Samp_Fields = {
-  __typename?: 'consensus_stddev_samp_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate sum on columns */
-export type Consensus_Sum_Fields = {
-  __typename?: 'consensus_sum_fields';
-  height?: Maybe<Scalars['bigint']>;
-  round?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate var_pop on columns */
-export type Consensus_Var_Pop_Fields = {
-  __typename?: 'consensus_var_pop_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type Consensus_Var_Samp_Fields = {
-  __typename?: 'consensus_var_samp_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type Consensus_Variance_Fields = {
-  __typename?: 'consensus_variance_fields';
-  height?: Maybe<Scalars['Float']>;
-  round?: Maybe<Scalars['Float']>;
-};
-
 /** columns and relationships of "delegation" */
 export type Delegation = {
   __typename?: 'delegation';
@@ -3203,6 +3068,7 @@ export type Delegation_Bool_Exp = {
   delegator_address?: Maybe<String_Comparison_Exp>;
   height?: Maybe<Bigint_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
+  is_self_delegate?: Maybe<Boolean_Comparison_Exp>;
   validator?: Maybe<Validator_Bool_Exp>;
   validator_address?: Maybe<String_Comparison_Exp>;
 };
@@ -7208,7 +7074,7 @@ export type Post_Variance_Order_By = {
 export type Pre_Commit = {
   __typename?: 'pre_commit';
   height: Scalars['bigint'];
-  proposer_priority: Scalars['Int'];
+  proposer_priority: Scalars['bigint'];
   timestamp: Scalars['timestamp'];
   /** An object relationship */
   validator: Validator;
@@ -7282,7 +7148,7 @@ export type Pre_Commit_Bool_Exp = {
   _not?: Maybe<Pre_Commit_Bool_Exp>;
   _or?: Maybe<Array<Pre_Commit_Bool_Exp>>;
   height?: Maybe<Bigint_Comparison_Exp>;
-  proposer_priority?: Maybe<Int_Comparison_Exp>;
+  proposer_priority?: Maybe<Bigint_Comparison_Exp>;
   timestamp?: Maybe<Timestamp_Comparison_Exp>;
   validator?: Maybe<Validator_Bool_Exp>;
   validator_address?: Maybe<String_Comparison_Exp>;
@@ -7293,7 +7159,7 @@ export type Pre_Commit_Bool_Exp = {
 export type Pre_Commit_Max_Fields = {
   __typename?: 'pre_commit_max_fields';
   height?: Maybe<Scalars['bigint']>;
-  proposer_priority?: Maybe<Scalars['Int']>;
+  proposer_priority?: Maybe<Scalars['bigint']>;
   timestamp?: Maybe<Scalars['timestamp']>;
   validator_address?: Maybe<Scalars['String']>;
   voting_power?: Maybe<Scalars['bigint']>;
@@ -7312,7 +7178,7 @@ export type Pre_Commit_Max_Order_By = {
 export type Pre_Commit_Min_Fields = {
   __typename?: 'pre_commit_min_fields';
   height?: Maybe<Scalars['bigint']>;
-  proposer_priority?: Maybe<Scalars['Int']>;
+  proposer_priority?: Maybe<Scalars['bigint']>;
   timestamp?: Maybe<Scalars['timestamp']>;
   validator_address?: Maybe<Scalars['String']>;
   voting_power?: Maybe<Scalars['bigint']>;
@@ -7400,7 +7266,7 @@ export type Pre_Commit_Stddev_Samp_Order_By = {
 export type Pre_Commit_Sum_Fields = {
   __typename?: 'pre_commit_sum_fields';
   height?: Maybe<Scalars['bigint']>;
-  proposer_priority?: Maybe<Scalars['Int']>;
+  proposer_priority?: Maybe<Scalars['bigint']>;
   voting_power?: Maybe<Scalars['bigint']>;
 };
 
@@ -8411,11 +8277,11 @@ export type Proposal_Deposit = {
   __typename?: 'proposal_deposit';
   amount?: Maybe<Scalars['_coin']>;
   /** An object relationship */
-  block: Block;
+  block?: Maybe<Block>;
   /** An object relationship */
-  depositor: Account;
-  depositor_address: Scalars['String'];
-  height: Scalars['bigint'];
+  depositor?: Maybe<Account>;
+  depositor_address?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['bigint']>;
   /** An object relationship */
   proposal: Proposal;
   proposal_id: Scalars['Int'];
@@ -9607,8 +9473,6 @@ export type Proposal_Vote = {
   __typename?: 'proposal_vote';
   /** An object relationship */
   account: Account;
-  /** An object relationship */
-  block: Block;
   height: Scalars['bigint'];
   option: Scalars['String'];
   /** An object relationship */
@@ -9681,7 +9545,6 @@ export type Proposal_Vote_Bool_Exp = {
   _not?: Maybe<Proposal_Vote_Bool_Exp>;
   _or?: Maybe<Array<Proposal_Vote_Bool_Exp>>;
   account?: Maybe<Account_Bool_Exp>;
-  block?: Maybe<Block_Bool_Exp>;
   height?: Maybe<Bigint_Comparison_Exp>;
   option?: Maybe<String_Comparison_Exp>;
   proposal?: Maybe<Proposal_Bool_Exp>;
@@ -9726,7 +9589,6 @@ export type Proposal_Vote_Min_Order_By = {
 /** Ordering options when selecting data from "proposal_vote". */
 export type Proposal_Vote_Order_By = {
   account?: Maybe<Account_Order_By>;
-  block?: Maybe<Block_Order_By>;
   height?: Maybe<Order_By>;
   option?: Maybe<Order_By>;
   proposal?: Maybe<Proposal_Order_By>;
@@ -9909,10 +9771,6 @@ export type Query_Root = {
   community_pool: Array<Community_Pool>;
   /** fetch aggregated fields from the table: "community_pool" */
   community_pool_aggregate: Community_Pool_Aggregate;
-  /** fetch data from the table: "consensus" */
-  consensus: Array<Consensus>;
-  /** fetch aggregated fields from the table: "consensus" */
-  consensus_aggregate: Consensus_Aggregate;
   /** fetch data from the table: "delegation" */
   delegation: Array<Delegation>;
   /** fetch aggregated fields from the table: "delegation" */
@@ -10039,8 +9897,6 @@ export type Query_Root = {
   proposal_deposit: Array<Proposal_Deposit>;
   /** fetch aggregated fields from the table: "proposal_deposit" */
   proposal_deposit_aggregate: Proposal_Deposit_Aggregate;
-  /** fetch data from the table: "proposal_deposit" using primary key columns */
-  proposal_deposit_by_pk?: Maybe<Proposal_Deposit>;
   /** fetch data from the table: "proposal_staking_pool_snapshot" */
   proposal_staking_pool_snapshot: Array<Proposal_Staking_Pool_Snapshot>;
   /** fetch aggregated fields from the table: "proposal_staking_pool_snapshot" */
@@ -10462,24 +10318,6 @@ export type Query_RootCommunity_Pool_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Community_Pool_Order_By>>;
   where?: Maybe<Community_Pool_Bool_Exp>;
-};
-
-
-export type Query_RootConsensusArgs = {
-  distinct_on?: Maybe<Array<Consensus_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Consensus_Order_By>>;
-  where?: Maybe<Consensus_Bool_Exp>;
-};
-
-
-export type Query_RootConsensus_AggregateArgs = {
-  distinct_on?: Maybe<Array<Consensus_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Consensus_Order_By>>;
-  where?: Maybe<Consensus_Bool_Exp>;
 };
 
 
@@ -11008,13 +10846,6 @@ export type Query_RootProposal_Deposit_AggregateArgs = {
 };
 
 
-export type Query_RootProposal_Deposit_By_PkArgs = {
-  depositor_address: Scalars['String'];
-  height: Scalars['bigint'];
-  proposal_id: Scalars['Int'];
-};
-
-
 export type Query_RootProposal_Staking_Pool_SnapshotArgs = {
   distinct_on?: Maybe<Array<Proposal_Staking_Pool_Snapshot_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -11057,7 +10888,6 @@ export type Query_RootProposal_Tally_Result_AggregateArgs = {
 
 
 export type Query_RootProposal_Tally_Result_By_PkArgs = {
-  height: Scalars['bigint'];
   proposal_id: Scalars['Int'];
 };
 
@@ -12504,10 +12334,6 @@ export type Subscription_Root = {
   community_pool: Array<Community_Pool>;
   /** fetch aggregated fields from the table: "community_pool" */
   community_pool_aggregate: Community_Pool_Aggregate;
-  /** fetch data from the table: "consensus" */
-  consensus: Array<Consensus>;
-  /** fetch aggregated fields from the table: "consensus" */
-  consensus_aggregate: Consensus_Aggregate;
   /** fetch data from the table: "delegation" */
   delegation: Array<Delegation>;
   /** fetch aggregated fields from the table: "delegation" */
@@ -12634,8 +12460,6 @@ export type Subscription_Root = {
   proposal_deposit: Array<Proposal_Deposit>;
   /** fetch aggregated fields from the table: "proposal_deposit" */
   proposal_deposit_aggregate: Proposal_Deposit_Aggregate;
-  /** fetch data from the table: "proposal_deposit" using primary key columns */
-  proposal_deposit_by_pk?: Maybe<Proposal_Deposit>;
   /** fetch data from the table: "proposal_staking_pool_snapshot" */
   proposal_staking_pool_snapshot: Array<Proposal_Staking_Pool_Snapshot>;
   /** fetch aggregated fields from the table: "proposal_staking_pool_snapshot" */
@@ -13057,24 +12881,6 @@ export type Subscription_RootCommunity_Pool_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Community_Pool_Order_By>>;
   where?: Maybe<Community_Pool_Bool_Exp>;
-};
-
-
-export type Subscription_RootConsensusArgs = {
-  distinct_on?: Maybe<Array<Consensus_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Consensus_Order_By>>;
-  where?: Maybe<Consensus_Bool_Exp>;
-};
-
-
-export type Subscription_RootConsensus_AggregateArgs = {
-  distinct_on?: Maybe<Array<Consensus_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Consensus_Order_By>>;
-  where?: Maybe<Consensus_Bool_Exp>;
 };
 
 
@@ -13603,13 +13409,6 @@ export type Subscription_RootProposal_Deposit_AggregateArgs = {
 };
 
 
-export type Subscription_RootProposal_Deposit_By_PkArgs = {
-  depositor_address: Scalars['String'];
-  height: Scalars['bigint'];
-  proposal_id: Scalars['Int'];
-};
-
-
 export type Subscription_RootProposal_Staking_Pool_SnapshotArgs = {
   distinct_on?: Maybe<Array<Proposal_Staking_Pool_Snapshot_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -13652,7 +13451,6 @@ export type Subscription_RootProposal_Tally_Result_AggregateArgs = {
 
 
 export type Subscription_RootProposal_Tally_Result_By_PkArgs = {
-  height: Scalars['bigint'];
   proposal_id: Scalars['Int'];
 };
 
@@ -14857,6 +14655,7 @@ export type Token_Unit = {
   aliases?: Maybe<Scalars['_text']>;
   denom: Scalars['String'];
   exponent: Scalars['Int'];
+  price_id?: Maybe<Scalars['String']>;
   /** An object relationship */
   token: Token;
   token_name: Scalars['String'];
@@ -14976,6 +14775,7 @@ export type Token_Unit_Bool_Exp = {
   aliases?: Maybe<_Text_Comparison_Exp>;
   denom?: Maybe<String_Comparison_Exp>;
   exponent?: Maybe<Int_Comparison_Exp>;
+  price_id?: Maybe<String_Comparison_Exp>;
   token?: Maybe<Token_Bool_Exp>;
   token_name?: Maybe<String_Comparison_Exp>;
   token_price?: Maybe<Token_Price_Bool_Exp>;
@@ -14988,6 +14788,7 @@ export type Token_Unit_Max_Fields = {
   __typename?: 'token_unit_max_fields';
   denom?: Maybe<Scalars['String']>;
   exponent?: Maybe<Scalars['Int']>;
+  price_id?: Maybe<Scalars['String']>;
   token_name?: Maybe<Scalars['String']>;
 };
 
@@ -14995,6 +14796,7 @@ export type Token_Unit_Max_Fields = {
 export type Token_Unit_Max_Order_By = {
   denom?: Maybe<Order_By>;
   exponent?: Maybe<Order_By>;
+  price_id?: Maybe<Order_By>;
   token_name?: Maybe<Order_By>;
 };
 
@@ -15003,6 +14805,7 @@ export type Token_Unit_Min_Fields = {
   __typename?: 'token_unit_min_fields';
   denom?: Maybe<Scalars['String']>;
   exponent?: Maybe<Scalars['Int']>;
+  price_id?: Maybe<Scalars['String']>;
   token_name?: Maybe<Scalars['String']>;
 };
 
@@ -15010,6 +14813,7 @@ export type Token_Unit_Min_Fields = {
 export type Token_Unit_Min_Order_By = {
   denom?: Maybe<Order_By>;
   exponent?: Maybe<Order_By>;
+  price_id?: Maybe<Order_By>;
   token_name?: Maybe<Order_By>;
 };
 
@@ -15018,6 +14822,7 @@ export type Token_Unit_Order_By = {
   aliases?: Maybe<Order_By>;
   denom?: Maybe<Order_By>;
   exponent?: Maybe<Order_By>;
+  price_id?: Maybe<Order_By>;
   token?: Maybe<Token_Order_By>;
   token_name?: Maybe<Order_By>;
   token_price?: Maybe<Token_Price_Order_By>;
@@ -15033,6 +14838,8 @@ export enum Token_Unit_Select_Column {
   Denom = 'denom',
   /** column name */
   Exponent = 'exponent',
+  /** column name */
+  PriceId = 'price_id',
   /** column name */
   TokenName = 'token_name'
 }
@@ -16563,6 +16370,7 @@ export type Validator_Bool_Exp = {
   pre_commits?: Maybe<Pre_Commit_Bool_Exp>;
   redelegationsByDstValidatorAddress?: Maybe<Redelegation_Bool_Exp>;
   redelegationsBySrcValidatorAddress?: Maybe<Redelegation_Bool_Exp>;
+  self_delegations?: Maybe<Delegation_Bool_Exp>;
   unbonding_delegations?: Maybe<Unbonding_Delegation_Bool_Exp>;
   validator_commission_amounts?: Maybe<Validator_Commission_Amount_Bool_Exp>;
   validator_commissions?: Maybe<Validator_Commission_Bool_Exp>;
@@ -18171,6 +17979,9 @@ export type AccountQuery = { stakingParams: Array<(
         )>, validatorCommissions: Array<(
           { __typename?: 'validator_commission' }
           & Pick<Validator_Commission, 'commission'>
+        )>, validatorStatuses: Array<(
+          { __typename?: 'validator_status' }
+          & Pick<Validator_Status, 'status' | 'jailed'>
         )> }
       ) }
     )>, unbonding: Array<(
@@ -18467,36 +18278,15 @@ export type ProposalDetailsQuery = { proposal: Array<(
       & Pick<Proposal_Deposit, 'amount'>
       & { depositorAddress: Proposal_Deposit['depositor_address'] }
     )> }
-  )> };
-
-export type ProposalVotesListenerSubscriptionVariables = Exact<{
-  proposalId?: Maybe<Scalars['Int']>;
-}>;
-
-
-export type ProposalVotesListenerSubscription = { proposalVote: Array<(
+  )>, proposalVote: Array<(
     { __typename?: 'proposal_vote' }
     & Pick<Proposal_Vote, 'option'>
     & { voterAddress: Proposal_Vote['voter_address'] }
-  )> };
-
-export type ProposalTallyListenerSubscriptionVariables = Exact<{
-  proposalId?: Maybe<Scalars['Int']>;
-}>;
-
-
-export type ProposalTallyListenerSubscription = { proposalTallyResult: Array<(
+  )>, proposalTallyResult: Array<(
     { __typename?: 'proposal_tally_result' }
     & Pick<Proposal_Tally_Result, 'yes' | 'no' | 'abstain'>
     & { noWithVeto: Proposal_Tally_Result['no_with_veto'] }
-  )> };
-
-export type TallyParamsQueryVariables = Exact<{
-  proposalId?: Maybe<Scalars['Int']>;
-}>;
-
-
-export type TallyParamsQuery = { govParams: Array<(
+  )>, govParams: Array<(
     { __typename?: 'gov_params' }
     & { tallyParams: Gov_Params['tally_params'] }
   )>, stakingParams: Array<(
@@ -18505,14 +18295,7 @@ export type TallyParamsQuery = { govParams: Array<(
   )>, stakingPool: Array<(
     { __typename?: 'proposal_staking_pool_snapshot' }
     & { bondedTokens: Proposal_Staking_Pool_Snapshot['bonded_tokens'] }
-  )> };
-
-export type ProposalValidatorSnapshotQueryVariables = Exact<{
-  proposalId?: Maybe<Scalars['Int']>;
-}>;
-
-
-export type ProposalValidatorSnapshotQuery = { validatorStatuses: Array<(
+  )>, validatorStatuses: Array<(
     { __typename?: 'proposal_validator_status_snapshot' }
     & Pick<Proposal_Validator_Status_Snapshot, 'status'>
     & { validatorAddress: Proposal_Validator_Status_Snapshot['validator_address'], votingPower: Proposal_Validator_Status_Snapshot['voting_power'] }
@@ -18778,6 +18561,10 @@ export const AccountDocument = gql`
         }
         validatorCommissions: validator_commissions(limit: 1, order_by: {height: desc}) {
           commission
+        }
+        validatorStatuses: validator_statuses(limit: 1, order_by: {height: desc}) {
+          status
+          jailed
         }
       }
     }
@@ -19451,6 +19238,41 @@ export const ProposalDetailsDocument = gql`
       depositorAddress: depositor_address
     }
   }
+  proposalVote: proposal_vote(where: {proposal_id: {_eq: $proposalId}}) {
+    option
+    voterAddress: voter_address
+  }
+  proposalTallyResult: proposal_tally_result(
+    where: {proposal_id: {_eq: $proposalId}}
+  ) {
+    yes
+    no
+    noWithVeto: no_with_veto
+    abstain
+  }
+  govParams: gov_params {
+    tallyParams: tally_params
+  }
+  stakingParams: staking_params(limit: 1) {
+    params
+  }
+  stakingPool: proposal_staking_pool_snapshot(
+    where: {proposal_id: {_eq: $proposalId}}
+  ) {
+    bondedTokens: bonded_tokens
+  }
+  validatorStatuses: proposal_validator_status_snapshot(
+    where: {proposal_id: {_eq: $proposalId}, status: {_eq: 3}}
+  ) {
+    validatorAddress: validator_address
+    status
+    votingPower: voting_power
+    validator {
+      validatorInfo: validator_info {
+        selfDelegateAddress: self_delegate_address
+      }
+    }
+  }
 }
     `;
 
@@ -19481,159 +19303,6 @@ export function useProposalDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type ProposalDetailsQueryHookResult = ReturnType<typeof useProposalDetailsQuery>;
 export type ProposalDetailsLazyQueryHookResult = ReturnType<typeof useProposalDetailsLazyQuery>;
 export type ProposalDetailsQueryResult = Apollo.QueryResult<ProposalDetailsQuery, ProposalDetailsQueryVariables>;
-export const ProposalVotesListenerDocument = gql`
-    subscription ProposalVotesListener($proposalId: Int) {
-  proposalVote: proposal_vote(where: {proposal_id: {_eq: $proposalId}}) {
-    option
-    voterAddress: voter_address
-  }
-}
-    `;
-
-/**
- * __useProposalVotesListenerSubscription__
- *
- * To run a query within a React component, call `useProposalVotesListenerSubscription` and pass it any options that fit your needs.
- * When your component renders, `useProposalVotesListenerSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProposalVotesListenerSubscription({
- *   variables: {
- *      proposalId: // value for 'proposalId'
- *   },
- * });
- */
-export function useProposalVotesListenerSubscription(baseOptions?: Apollo.SubscriptionHookOptions<ProposalVotesListenerSubscription, ProposalVotesListenerSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<ProposalVotesListenerSubscription, ProposalVotesListenerSubscriptionVariables>(ProposalVotesListenerDocument, options);
-      }
-export type ProposalVotesListenerSubscriptionHookResult = ReturnType<typeof useProposalVotesListenerSubscription>;
-export type ProposalVotesListenerSubscriptionResult = Apollo.SubscriptionResult<ProposalVotesListenerSubscription>;
-export const ProposalTallyListenerDocument = gql`
-    subscription ProposalTallyListener($proposalId: Int) {
-  proposalTallyResult: proposal_tally_result(
-    where: {proposal_id: {_eq: $proposalId}}
-  ) {
-    yes
-    no
-    noWithVeto: no_with_veto
-    abstain
-  }
-}
-    `;
-
-/**
- * __useProposalTallyListenerSubscription__
- *
- * To run a query within a React component, call `useProposalTallyListenerSubscription` and pass it any options that fit your needs.
- * When your component renders, `useProposalTallyListenerSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProposalTallyListenerSubscription({
- *   variables: {
- *      proposalId: // value for 'proposalId'
- *   },
- * });
- */
-export function useProposalTallyListenerSubscription(baseOptions?: Apollo.SubscriptionHookOptions<ProposalTallyListenerSubscription, ProposalTallyListenerSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<ProposalTallyListenerSubscription, ProposalTallyListenerSubscriptionVariables>(ProposalTallyListenerDocument, options);
-      }
-export type ProposalTallyListenerSubscriptionHookResult = ReturnType<typeof useProposalTallyListenerSubscription>;
-export type ProposalTallyListenerSubscriptionResult = Apollo.SubscriptionResult<ProposalTallyListenerSubscription>;
-export const TallyParamsDocument = gql`
-    query TallyParams($proposalId: Int) {
-  govParams: gov_params {
-    tallyParams: tally_params
-  }
-  stakingParams: staking_params(limit: 1) {
-    params
-  }
-  stakingPool: proposal_staking_pool_snapshot(
-    where: {proposal_id: {_eq: $proposalId}}
-  ) {
-    bondedTokens: bonded_tokens
-  }
-}
-    `;
-
-/**
- * __useTallyParamsQuery__
- *
- * To run a query within a React component, call `useTallyParamsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTallyParamsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTallyParamsQuery({
- *   variables: {
- *      proposalId: // value for 'proposalId'
- *   },
- * });
- */
-export function useTallyParamsQuery(baseOptions?: Apollo.QueryHookOptions<TallyParamsQuery, TallyParamsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TallyParamsQuery, TallyParamsQueryVariables>(TallyParamsDocument, options);
-      }
-export function useTallyParamsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TallyParamsQuery, TallyParamsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TallyParamsQuery, TallyParamsQueryVariables>(TallyParamsDocument, options);
-        }
-export type TallyParamsQueryHookResult = ReturnType<typeof useTallyParamsQuery>;
-export type TallyParamsLazyQueryHookResult = ReturnType<typeof useTallyParamsLazyQuery>;
-export type TallyParamsQueryResult = Apollo.QueryResult<TallyParamsQuery, TallyParamsQueryVariables>;
-export const ProposalValidatorSnapshotDocument = gql`
-    query ProposalValidatorSnapshot($proposalId: Int) {
-  validatorStatuses: proposal_validator_status_snapshot(
-    where: {proposal_id: {_eq: $proposalId}, status: {_eq: 3}}
-  ) {
-    validatorAddress: validator_address
-    status
-    votingPower: voting_power
-    validator {
-      validatorInfo: validator_info {
-        selfDelegateAddress: self_delegate_address
-      }
-    }
-  }
-}
-    `;
-
-/**
- * __useProposalValidatorSnapshotQuery__
- *
- * To run a query within a React component, call `useProposalValidatorSnapshotQuery` and pass it any options that fit your needs.
- * When your component renders, `useProposalValidatorSnapshotQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProposalValidatorSnapshotQuery({
- *   variables: {
- *      proposalId: // value for 'proposalId'
- *   },
- * });
- */
-export function useProposalValidatorSnapshotQuery(baseOptions?: Apollo.QueryHookOptions<ProposalValidatorSnapshotQuery, ProposalValidatorSnapshotQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ProposalValidatorSnapshotQuery, ProposalValidatorSnapshotQueryVariables>(ProposalValidatorSnapshotDocument, options);
-      }
-export function useProposalValidatorSnapshotLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProposalValidatorSnapshotQuery, ProposalValidatorSnapshotQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ProposalValidatorSnapshotQuery, ProposalValidatorSnapshotQueryVariables>(ProposalValidatorSnapshotDocument, options);
-        }
-export type ProposalValidatorSnapshotQueryHookResult = ReturnType<typeof useProposalValidatorSnapshotQuery>;
-export type ProposalValidatorSnapshotLazyQueryHookResult = ReturnType<typeof useProposalValidatorSnapshotLazyQuery>;
-export type ProposalValidatorSnapshotQueryResult = Apollo.QueryResult<ProposalValidatorSnapshotQuery, ProposalValidatorSnapshotQueryVariables>;
 export const ProposalsDocument = gql`
     query Proposals($limit: Int = 7, $offset: Int = 0) {
   proposals: proposal(limit: $limit, offset: $offset, order_by: {id: desc}) {

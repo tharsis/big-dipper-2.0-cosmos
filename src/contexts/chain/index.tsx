@@ -4,20 +4,20 @@ import {
 } from './hooks';
 import { ChainState } from './types';
 
+const initialTokenUnit = {
+  value: 0,
+  denom: '',
+  format: '',
+};
+
 const initialState: ChainState = {
   market: {
     loading: true,
-    price: 0,
-    supply: {
-      value: 0,
-      denom: '',
-    },
-    marketCap: 0,
+    price: null,
+    supply: initialTokenUnit,
+    marketCap: null,
     inflation: 0,
-    communityPool: {
-      value: 0,
-      denom: '',
-    },
+    communityPool: initialTokenUnit,
   },
   validatorsAddresses: {
     loading: true,

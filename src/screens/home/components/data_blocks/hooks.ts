@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as R from 'ramda';
+import numeral from 'numeral';
 import {
   useLatestBlockHeightListenerSubscription,
   useAverageBlockTimeQuery,
@@ -15,7 +16,7 @@ export const useDataBlocks = () => {
   const [state, setState] = useState<{
     blockHeight: number;
     blockTime: number;
-    price: number;
+    price: number | null;
     validators: {
       active: number;
       total: number;
@@ -23,7 +24,7 @@ export const useDataBlocks = () => {
   }>({
     blockHeight: 0,
     blockTime: 0,
-    price: 0,
+    price: null,
     validators: {
       active: 0,
       total: 0,
@@ -75,7 +76,10 @@ export const useDataBlocks = () => {
   });
 
   const formatTokenPrice = (data: TokenPriceListenerSubscription) => {
-    return data?.tokenPrice[0]?.price ?? state.price;
+    if (data?.tokenPrice[0]?.price) {
+      return numeral(numeral(data?.tokenPrice[0]?.price).format('0.[00]', Math.floor)).value();
+    }
+    return state.price;
   };
 
   // ====================================

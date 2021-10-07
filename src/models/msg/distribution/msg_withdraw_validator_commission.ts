@@ -7,10 +7,7 @@ class MsgWithdrawValidatorCommission {
   public category: Categories;
   public type: string;
   public validatorAddress: string;
-  public amounts: {
-    denom: string;
-    value: number;
-  }[];
+  public amounts: TokenUnit[];
   public json: any;
 
   constructor(payload: any) {
@@ -22,10 +19,10 @@ class MsgWithdrawValidatorCommission {
   }
 
   static getWithdrawalAmount(log: any) {
-    const [withdrawEvent] = log?.events?.filter((x) => x.type === 'withdraw_commission');
-    const [withdrawAmount] = R.pathOr([], ['attributes'], withdrawEvent).filter((x) => x.key === 'amount');
+    const withdrawEvents = R.pathOr([], ['events'], log).filter((x) => x.type === 'withdraw_commission');
+    const withdrawAmounts = R.pathOr([], [0, 'attributes'], withdrawEvents).filter((x) => x.key === 'amount');
 
-    const amounts = R.pathOr('0', ['value'], withdrawAmount).split(',').map((x) => {
+    const amounts = R.pathOr('0', [0, 'value'], withdrawAmounts).split(',').map((x) => {
       const [amount, denom = chainConfig.primaryTokenUnit] = x.match(/[a-z]+|[^a-z]+/gi);
       return formatDenom(amount, denom);
     });

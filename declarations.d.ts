@@ -27,18 +27,20 @@ type Transactions = {
 type TokenUnit = {
   value: number;
   denom: string;
+  format: string;
 }
 
 type DesmosProfile = {
   dtag: string;
   nickname: string;
   imageUrl: string;
+  coverUrl: string;
   bio: string;
-  connections: ConnectionType[];
+  connections: ProfileConnectionType[];
   validator?: ValidatorProfile;
 }
 
-type ConnectionType = {
+type ProfileConnectionType = {
   network: string;
   identifier: string;
   creationTime: string;
@@ -75,3 +77,8 @@ type TagTheme = 'zero' |
 'eighteen' |
 'nineteen' |
 'twenty'
+
+type MsgCoin = {
+  denom: string;
+  amount: string | number;
+}

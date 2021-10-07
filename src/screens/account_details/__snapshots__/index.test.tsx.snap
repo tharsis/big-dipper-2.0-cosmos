@@ -4,7 +4,6 @@ exports[`screen: BlockDetails matches snapshot 1`] = `
 <div
   id="Layout"
   navTitle="accounts:accountDetails"
-  title="accounts:accountDetails"
 >
   <div
     exists={true}
@@ -15,23 +14,32 @@ exports[`screen: BlockDetails matches snapshot 1`] = `
       className="makeStyles-root"
     >
       <div
-        address="desmos18kvwy5hzcu3ss08lcfcnx0eajuecg69ujmkwjr"
-        className="makeStyles-overview"
-        id="Overview"
-        withdrawalAddress="desmos18kvwy5hzcu3ss08lcfcnx0eajuecg69ujmkwjr"
-      />
-      <div
         bio=""
-        connections={Array []}
+        connections={
+          Array [
+            Object {
+              "creationTime": "2021-10-06T00:10:45.761731",
+              "identifier": "desmos1kmw9et4e99ascgdw0mmkt63mggjuu0xuqjx30w",
+              "network": "native",
+            },
+          ]
+        }
         dtag="RiccardoMontagnin"
         id="DesmosProfile"
         imageUrl=""
         nickname=""
       />
       <div
+        address="desmos18kvwy5hzcu3ss08lcfcnx0eajuecg69ujmkwjr"
+        className="makeStyles-overview"
+        id="Overview"
+        withdrawalAddress="desmos18kvwy5hzcu3ss08lcfcnx0eajuecg69ujmkwjr"
+      />
+      <div
         available={
           Object {
             "denom": "daric",
+            "format": "0,0.[000000]",
             "value": 21.280246,
           }
         }
@@ -39,12 +47,14 @@ exports[`screen: BlockDetails matches snapshot 1`] = `
         commission={
           Object {
             "denom": "daric",
+            "format": "0,0.[000000]",
             "value": 0.725602207464032,
           }
         }
         delegate={
           Object {
             "denom": "daric",
+            "format": "0,0.[000000]",
             "value": 1632425.218854,
           }
         }
@@ -52,13 +62,21 @@ exports[`screen: BlockDetails matches snapshot 1`] = `
         reward={
           Object {
             "denom": "daric",
+            "format": "",
             "value": 58219.06133827526,
           }
         }
-        total={1690666.2860404828}
+        total={
+          Object {
+            "denom": "daric",
+            "format": "0,0.[000000]",
+            "value": 1690666.2860404828,
+          }
+        }
         unbonding={
           Object {
             "denom": "daric",
+            "format": "0,0.[000000]",
             "value": 0,
           }
         }
@@ -73,30 +91,36 @@ exports[`screen: BlockDetails matches snapshot 1`] = `
               Object {
                 "available": Object {
                   "denom": "someotherbalance",
+                  "format": "0,0.[000000]",
                   "value": 21280246,
                 },
                 "commission": Object {
                   "denom": "someotherbalance",
+                  "format": "0,0.[000000]",
                   "value": 0,
                 },
                 "denom": "someotherbalance",
                 "reward": Object {
                   "denom": "someotherbalance",
+                  "format": "0,0.[000000]",
                   "value": 0,
                 },
               },
               Object {
                 "available": Object {
                   "denom": "ufootoken",
+                  "format": "0,0.[000000]",
                   "value": 0,
                 },
                 "commission": Object {
                   "denom": "ufootoken",
+                  "format": "0,0.[000000]",
                   "value": 0,
                 },
                 "denom": "ufootoken",
                 "reward": Object {
                   "denom": "ufootoken",
+                  "format": "0,0.[000000]",
                   "value": 58219061338,
                 },
               },
@@ -113,17 +137,23 @@ exports[`screen: BlockDetails matches snapshot 1`] = `
               Object {
                 "amount": Object {
                   "denom": "daric",
+                  "format": "0,0.[000000]",
                   "value": 1632425.218854,
                 },
                 "commission": 0.0999,
                 "reward": Object {
                   "denom": "daric",
+                  "format": "0,0.[000000]",
                   "value": 58219.06133827526,
                 },
                 "validator": Object {
                   "address": "desmosvaloper1u0dae8r8hay6r2gvccegg2fz6ryftf2wfnj5ft",
                   "imageUrl": null,
                   "name": "moniker",
+                },
+                "validatorStatus": Object {
+                  "jailed": false,
+                  "status": 3,
                 },
               },
             ],

@@ -6,10 +6,11 @@ export const formatMarket = (data: {
   supply: TokenUnit;
   inflation: number;
 }) => {
+  const marketCap = data.marketCap !== null ? `$${numeral(data.marketCap).format('0,0.[00]')}` : 'N/A';
   return ([
     {
       key: 'marketCap',
-      data: `$${numeral(data.marketCap).format('0,0.[00]')}`,
+      data: marketCap,
     },
     {
       key: 'inflation',
@@ -21,7 +22,7 @@ export const formatMarket = (data: {
     },
     {
       key: 'communityPool',
-      data: `${numeral(data.communityPool.value).format('0,0.00')} ${data.communityPool.denom.toUpperCase()}`,
+      data: `${numeral(data.communityPool.value).format('0,0.[00]')} ${data.communityPool.denom.toUpperCase()}`,
     },
   ]);
 };

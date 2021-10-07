@@ -12,7 +12,7 @@ type Options = {
   onComplete: (data: DesmosProfileQuery) => void;
 }
 
-const PROFILE_API = 'https://gql.morpheus.desmos.network/v1/graphql';
+const PROFILE_API = 'https://gql.mainnet.desmos.network/v1/graphql';
 
 export const useDesmosProfile = (options: Options) => {
   const [loading, setLoading] = useState(false);
@@ -80,6 +80,12 @@ export const useDesmosProfile = (options: Options) => {
 
     const profile = data.profile[0];
 
+    const nativeData = {
+      network: 'native',
+      identifier: profile.address,
+      creationTime: profile.creationTime,
+    };
+
     const applications = profile.applicationLinks.map((x) => {
       return ({
         network: x.application,
@@ -96,14 +102,17 @@ export const useDesmosProfile = (options: Options) => {
       });
     });
 
+    const connectionsWithoutNativeSorted = [...applications, ...chains].sort((a, b) => (
+      (a.network.toLowerCase() > b.network.toLowerCase()) ? 1 : -1
+    ));
+
     return ({
       dtag: profile.dtag,
       nickname: profile.nickname,
       imageUrl: profile.profilePic,
+      coverUrl: profile.coverPic,
       bio: profile.bio,
-      connections: [...applications, ...chains].sort((a, b) => (
-        (a.network.toLowerCase() > b.network.toLowerCase()) ? 1 : -1
-      )),
+      connections: [nativeData, ...connectionsWithoutNativeSorted],
     });
   };
 

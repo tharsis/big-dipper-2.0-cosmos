@@ -24,6 +24,62 @@ import {
 } from '@models';
 import { ValidatorDetailsState } from './types';
 
+const initialTokenDenom = {
+  value: 0,
+  denom: '',
+  format: '',
+};
+
+const initialState: ValidatorDetailsState = {
+  loading: true,
+  exists: true,
+  desmosProfile: null,
+  overview: {
+    validator: {
+      imageUrl: '',
+      moniker: '',
+    },
+    operatorAddress: '',
+    selfDelegateAddress: '',
+    description: '',
+    website: '',
+  },
+  status: {
+    status: 0,
+    jailed: false,
+    condition: 0,
+    commission: 0,
+    missedBlockCounter: 0,
+    signedBlockWindow: 0,
+    lastSeen: '',
+  },
+  votingPower: {
+    height: 0,
+    overall: initialTokenDenom,
+    self: 0,
+    selfDelegatePercent: 0,
+    selfDelegate: initialTokenDenom,
+  },
+  delegations: {
+    count: 0,
+    data: [],
+  },
+  redelegations: {
+    count: 0,
+    data: [],
+  },
+  undelegations: {
+    count: 0,
+    data: [],
+  },
+  transactions: {
+    data: [],
+    hasNextPage: false,
+    isNextPageLoading: false,
+    offsetCount: 0,
+  },
+};
+
 export const useValidatorDetails = () => {
   const router = useRouter();
   const {
@@ -31,59 +87,7 @@ export const useValidatorDetails = () => {
     findOperator,
     validatorToDelegatorAddress,
   } = useChainContext();
-  const [state, setState] = useState<ValidatorDetailsState>({
-    loading: true,
-    exists: true,
-    desmosProfile: null,
-    overview: {
-      validator: {
-        imageUrl: '',
-        moniker: '',
-      },
-      operatorAddress: '',
-      selfDelegateAddress: '',
-      description: '',
-      status: 0,
-      jailed: false,
-      website: '',
-      condition: 0,
-      commission: 0,
-      missedBlockCounter: 0,
-      signedBlockWindow: 0,
-      lastSeen: '',
-    },
-    votingPower: {
-      height: 0,
-      overall: {
-        value: 0,
-        denom: '',
-      },
-      self: 0,
-      selfDelegatePercent: 0,
-      selfDelegate: {
-        value: 0,
-        denom: '',
-      },
-    },
-    delegations: {
-      count: 0,
-      data: [],
-    },
-    redelegations: {
-      count: 0,
-      data: [],
-    },
-    undelegations: {
-      count: 0,
-      data: [],
-    },
-    transactions: {
-      data: [],
-      hasNextPage: false,
-      isNextPageLoading: false,
-      offsetCount: 0,
-    },
-  });
+  const [state, setState] = useState<ValidatorDetailsState>(initialState);
 
   const handleSetState = (stateChange: any) => {
     setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
@@ -103,10 +107,7 @@ export const useValidatorDetails = () => {
   });
 
   useEffect(() => {
-    handleSetState({
-      loading: true,
-      exists: true,
-    });
+    handleSetState(initialState);
     if (chainConfig.extra.desmosProfile) {
       const address = validatorToDelegatorAddress(R.pathOr('', ['query', 'address'], router));
 
@@ -135,7 +136,7 @@ export const useValidatorDetails = () => {
     },
     onSubscriptionData: (data) => {
       handleSetState({
-        overview: formatLastSeen(data.subscriptionData.data),
+        status: formatLastSeen(data.subscriptionData.data),
       });
     },
   });
@@ -232,22 +233,37 @@ export const useValidatorDetails = () => {
     // overview
     // ============================
     const formatOverview = () => {
+      const operatorAddress = R.pathOr('', ['validator', 0, 'validatorInfo', 'operatorAddress'], data);
+      const selfDelegateAddress = R.pathOr('', ['validator', 0, 'validatorInfo', 'selfDelegateAddress'], data);
+      const validator = findAddress(operatorAddress);
+      const profile = {
+        validator: {
+          moniker: validator.moniker,
+          imageUrl: R.pathOr('', ['imageUrl'], validator),
+        },
+        operatorAddress,
+        selfDelegateAddress,
+        description: R.pathOr('', ['validatorDescriptions', 0, 'details'], data.validator[0]),
+        website: R.pathOr('', ['validatorDescriptions', 0, 'website'], data.validator[0]),
+      };
+
+      return profile;
+    };
+
+    stateChange.overview = formatOverview();
+
+    // ============================
+    // status
+    // ============================
+    const formatStatus = () => {
       const slashingParams = SlashingParams.fromJson(R.pathOr({}, ['slashingParams', 0, 'params'], data));
       const missedBlockCounter = R.pathOr(0, ['validatorSigningInfos', 0, 'missedBlocksCounter'], data.validator[0]);
       const { signedBlockWindow } = slashingParams;
       const condition = getValidatorCondition(signedBlockWindow, missedBlockCounter);
-      const operatorAddress = R.pathOr('', ['validator', 0, 'validatorInfo', 'operatorAddress'], data);
-      const selfDelegateAddress = R.pathOr('', ['validator', 0, 'validatorInfo', 'selfDelegateAddress'], data);
-      const validator = findAddress(operatorAddress);
 
       const profile = {
-        validator,
-        operatorAddress,
-        selfDelegateAddress,
-        description: R.pathOr('', ['validatorDescriptions', 0, 'details'], data.validator[0]),
         status: R.pathOr(3, ['validatorStatuses', 0, 'status'], data.validator[0]),
         jailed: R.pathOr(false, ['validatorStatuses', 0, 'jailed'], data.validator[0]),
-        website: R.pathOr('', ['validatorDescriptions', 0, 'website'], data.validator[0]),
         commission: R.pathOr(0, ['validatorCommissions', 0, 'commission'], data.validator[0]),
         condition,
         missedBlockCounter,
@@ -257,8 +273,7 @@ export const useValidatorDetails = () => {
       return profile;
     };
 
-    stateChange.overview = formatOverview();
-
+    stateChange.status = formatStatus();
     // ============================
     // votingPower
     // ============================
@@ -308,7 +323,7 @@ export const useValidatorDetails = () => {
             name: delegator.moniker,
           },
         });
-      }).sort((a, b) => (a.amount > b.amount ? 1 : -1));
+      }).sort((a, b) => (a.amount.value < b.amount.value ? 1 : -1));
       return {
         data: delegations,
         count: delegations.length,
@@ -322,18 +337,20 @@ export const useValidatorDetails = () => {
     const formatRedelegations = () => {
       const redelegations = [
         ...data.validator[0].redelegationsByDstValidatorAddress.map((x) => {
-          const to = findAddress(findOperator(x.to));
-          const from = findAddress(findOperator(x.from));
+          const toValidator = findOperator(x.to);
+          const to = findAddress(toValidator);
+          const fromValidator = findOperator(x.from);
+          const from = findAddress(fromValidator);
           const delegator = findAddress(x.delegatorAddress);
 
           return ({
             to: {
-              address: x.to,
+              address: toValidator,
               imageUrl: to.imageUrl,
               name: to.moniker,
             },
             from: {
-              address: x.from,
+              address: fromValidator,
               imageUrl: from.imageUrl,
               name: from.moniker,
             },
@@ -347,17 +364,19 @@ export const useValidatorDetails = () => {
           });
         }),
         ...data.validator[0].redelegationsBySrcValidatorAddress.map((x) => {
-          const to = findAddress(findOperator(x.to));
-          const from = findAddress(findOperator(x.from));
+          const toValidator = findOperator(x.to);
+          const to = findAddress(toValidator);
+          const fromValidator = findOperator(x.from);
+          const from = findAddress(fromValidator);
           const delegator = findAddress(x.delegatorAddress);
           return ({
             to: {
-              address: x.to,
+              address: toValidator,
               imageUrl: to.imageUrl,
               name: to.moniker,
             },
             from: {
-              address: x.from,
+              address: fromValidator,
               imageUrl: from.imageUrl,
               name: from.moniker,
             },
@@ -370,7 +389,7 @@ export const useValidatorDetails = () => {
             },
           });
         }),
-      ].sort((a, b) => (a.amount > b.amount ? 1 : -1));
+      ].sort((a, b) => (a.amount.value < b.amount.value ? 1 : -1));
 
       return {
         data: redelegations,
@@ -395,7 +414,7 @@ export const useValidatorDetails = () => {
           linkedUntil: x.completionTimestamp,
           commission: R.pathOr(0, ['validator', 'validatorCommissions', 0, 'commission'], x),
         });
-      }).sort((a, b) => (a.amount > b.amount ? 1 : -1));
+      }).sort((a, b) => (a.amount.value < b.amount.value ? 1 : -1));
 
       return {
         data: undelegations,

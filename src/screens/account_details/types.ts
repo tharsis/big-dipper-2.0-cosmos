@@ -9,7 +9,7 @@ export type BalanceType = {
   unbonding: TokenUnit;
   reward: TokenUnit;
   commission?: TokenUnit;
-  total: number;
+  total: TokenUnit;
 }
 
 export type OtherTokenType = {
@@ -29,6 +29,10 @@ export type TransactionType = {
 
 export type DelegationType = {
   validator: AvatarName;
+  validatorStatus: {
+    status: number;
+    jailed: boolean;
+  }
   commission: number;
   amount: TokenUnit;
   reward: TokenUnit;

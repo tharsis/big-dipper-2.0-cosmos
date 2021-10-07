@@ -13,6 +13,8 @@ import {
   AvatarName,
 } from '@components';
 import { DelegationType } from '@src/screens/account_details/types';
+import { getValidatorStatus } from '@utils/get_validator_status';
+import { useStyles } from './styles';
 import { columns } from './utils';
 
 const Desktop: React.FC<{
@@ -23,8 +25,9 @@ const Desktop: React.FC<{
   items,
 }) => {
   const { t } = useTranslation('accounts');
-
+  const classes = useStyles();
   const formattedItems = items.map((x) => {
+    const statusTheme = getValidatorStatus(x.validatorStatus.status, x.validatorStatus.jailed);
     return ({
       validator: (
         <AvatarName
@@ -33,9 +36,14 @@ const Desktop: React.FC<{
           imageUrl={x.validator.imageUrl}
         />
       ),
+      status: (
+        <span className={classnames(classes.status, statusTheme.status)}>
+          {t(`validators:${statusTheme.status}`)}
+        </span>
+      ),
       commission: `${numeral(x.commission * 100).format('0.00')}%`,
-      amount: `${numeral(x.amount.value).format('0,0.[0000]')} ${x.amount.denom.toUpperCase()}`,
-      reward: `${numeral(x.reward.value).format('0,0.[0000]')} ${x.reward.denom.toUpperCase()}`,
+      amount: `${numeral(x.amount.value).format(x.amount.format)} ${x.amount.denom.toUpperCase()}`,
+      reward: `${numeral(x.reward.value).format(x.reward.format)} ${x.reward.denom.toUpperCase()}`,
     });
   });
 
