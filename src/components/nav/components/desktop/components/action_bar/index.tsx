@@ -27,18 +27,18 @@ const ActionBar: React.FC<{
     <div className={classnames(className, classes.root)} ref={heightRef}>
       <div className={classes.actions}>
         <SearchBar className={classnames(classes.searchBar, { open: isNetwork })} />
-        <Network
+        {/* <Network
           className={classnames(classes.network, { open: isNetwork })}
           toggleNetwork={toggleNetwork}
-        />
+        /> */}
         <SettingsList />
       </div>
-      <NetworkList
+      {/* <NetworkList
         actionHeight={height}
         className={classnames(classes.networkList, {
           open: isNetwork,
         })}
-      />
+      /> */}
     </div>
   );
 };

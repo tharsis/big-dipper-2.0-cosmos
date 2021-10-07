@@ -9,6 +9,7 @@ import { Typography } from '@material-ui/core';
 import { chainConfig } from '@configs';
 import { useStyles } from './styles';
 import { formatMarket } from './utils';
+import EvmosLogo from '@assets/evmos-white-logo.svg';
 
 const TitleBar:React.FC<{
   className?: string;
@@ -23,14 +24,21 @@ const TitleBar:React.FC<{
 
   const market = formatMarket(marketContext);
 
-  const logoUrl = R.pathOr(chainConfig.logo.default, ['logo', theme], chainConfig);
+  //const logoUrl = R.pathOr(chainConfig.logo.default, ['logo', theme], chainConfig);
 
   return (
     <div className={classnames(className, classes.root)}>
       {
       title
         ? <Typography variant="h1">{title}</Typography>
-        : <img src={logoUrl} className={classes.logo} alt="logo" />
+        :
+        <div className="footer__logo--container">
+        {theme === 'light' ? (
+          <EvmosLogo className={classes.logoblack} />
+        ) : (
+          <EvmosLogo className={classes.logo} />
+        )}
+        </div>
       }
       <div className={classes.content}>
         {market.map((x) => (

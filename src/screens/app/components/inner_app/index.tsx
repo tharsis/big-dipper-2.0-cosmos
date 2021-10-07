@@ -12,9 +12,9 @@ function InnerApp({
   Component, pageProps,
 }: AppProps) {
   useChainHealthCheck();
-  const networksContext = useNetworksContext();
+  //const networksContext = useNetworksContext();
   const chainContext = useChainContext();
-  const isLoading = chainContext.loading || networksContext.loading;
+  const isLoading = chainContext.loading ; //|| networksContext.loading;
 
   return (
     <>

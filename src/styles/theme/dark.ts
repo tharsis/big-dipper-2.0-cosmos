@@ -5,7 +5,7 @@ const surfaceOne = '#131316';
 const surfaceTwo = '#19191D';
 const fontOne = '#E6E6E6';
 const fontTwo = '#AAAAAB';
-const fontThree = '#818181';
+const fontThree = '#999999';
 
 /** Custom theme overrides for dark mode */
 export const darkThemeOverride = {
@@ -20,7 +20,7 @@ export const darkThemeOverride = {
   palette: {
     type: 'dark',
     primary: {
-      main: Color('#bbbbbb').alpha(0.7).string(),
+      main: '#888888',//Color('#bbbbbb').alpha(0.7).string(),
       contrastText: '#fff',
     },
     background: {

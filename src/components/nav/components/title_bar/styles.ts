@@ -25,6 +25,12 @@ export const useStyles = () => {
         },
         logo: {
           height: '56px',
+          fill: "#ffffff"
+          // width: '225px',
+        },
+        logoblack: {
+          height: '56px',
+          fill:"#000000",
           // width: '225px',
         },
         content: {
