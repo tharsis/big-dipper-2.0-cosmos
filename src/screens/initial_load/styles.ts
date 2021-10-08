@@ -25,6 +25,13 @@ export const useStyles = () => {
             width: '300px',
           },
         },
+        logoblack: {
+          width: '100%',
+          [theme.breakpoints.up('sm')]: {
+            width: '300px',
+          },
+          fill: "#000000",
+        },
         divider: {
           margin: theme.spacing(2, 0),
         },

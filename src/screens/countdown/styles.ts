@@ -21,6 +21,10 @@ export const useStyles = () => {
         logo: {
           width: '275px',
         },
+        logoblack: {
+          width: '275px',
+          fill: "#000000"
+        },
         timeContainer: {
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 65px)',

@@ -6,7 +6,7 @@ import { useSettingsContext } from '@contexts';
 import { LinearProgress } from '@material-ui/core';
 import { chainConfig } from '@configs';
 import { useStyles } from './styles';
-
+import EvmosLogo from '@assets/evmos-white-logo.svg';
 const InitialLoad = () => {
   const { theme } = useSettingsContext();
   const classes = useStyles();
@@ -16,7 +16,13 @@ const InitialLoad = () => {
   return (
     <div className={classes.root}>
       <div>
-        <img src={logoUrl} className={classes.logo} alt="logo" />
+      <div className="footer__logo--container">
+        {theme === 'light' ? (
+          <EvmosLogo className={classes.logoblack} />
+        ) : (
+          <EvmosLogo className={classes.logo} />
+        )}
+        </div>
         <LinearProgress className={classes.divider} />
         {theme === 'light' ? (
           <BigDipperLogoRed />

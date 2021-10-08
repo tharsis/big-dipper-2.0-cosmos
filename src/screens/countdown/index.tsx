@@ -8,6 +8,7 @@ import { chainConfig } from '@configs';
 import { useStyles } from './styles';
 import { Loading } from '@components';
 import { useSettingsContext } from '@contexts';
+import EvmosLogo from '@assets/evmos-white-logo.svg';
 
 const Countdown: React.FC<{
   startGenesis: () => void;
@@ -52,7 +53,13 @@ const Countdown: React.FC<{
 
   return (
     <div className={classes.root}>
-      <img src={logoUrl} className={classes.logo} alt="logo" />
+      <div className="footer__logo--container">
+      {theme === 'light' ? (
+        <EvmosLogo className={classes.logoblack} />
+      ) : (
+        <EvmosLogo className={classes.logo} />
+      )}
+      </div>
       <div className={classes.timeContainer}>
         <div className={classes.item}>
           <Typography variant="h1">

@@ -33,11 +33,11 @@ function App(props: AppProps) {
   return (
     <>
       <DefaultSeo
-        titleTemplate={`%s | ${chainConfig.title}`}
+        titleTemplate={`${chainConfig.title}`}
         title={t('common:bigDipper')}
         description={t('common:description')}
         openGraph={{
-          title: `${t('common:bigDipper')} | ${chainConfig.title}`,
+          title: `${chainConfig.title}`,
           type: 'website',
           site_name: 'Big Dipper',
           url: process.env.NEXT_PUBLIC_URL,
@@ -63,13 +63,13 @@ function App(props: AppProps) {
           {
             rel: 'icon',
             type: 'image/png',
-            href: '/icons/favicon-32x32.png',
+            href: '/icons/evmos32.png',
             sizes: '32x32',
           },
           {
             rel: 'icon',
             type: 'image/png',
-            href: '/icons/favicon-16x16.png',
+            href: '/icons/evmos16.png',
             sizes: '16x16',
           },
           {
@@ -83,7 +83,7 @@ function App(props: AppProps) {
           },
           {
             rel: 'shortcut icon',
-            href: '/icons/favicon.ico',
+            href: '/icons/evmos-favicon.ico',
           },
         ]}
         additionalMetaTags={[
