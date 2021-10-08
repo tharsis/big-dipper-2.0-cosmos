@@ -3,8 +3,6 @@ import classnames from 'classnames';
 import { useGetComponentDimension } from '@hooks';
 import { useStyles } from './styles';
 import {
-  Network,
-  NetworkList,
   SettingsList,
 } from './components';
 import { SearchBar } from '../../..';
@@ -12,15 +10,12 @@ import { SearchBar } from '../../..';
 const ActionBar: React.FC<{
   isNetwork: boolean;
   className?: string;
-  toggleNetwork: () => void;
 }> = ({
-  toggleNetwork,
   className,
   isNetwork,
 }) => {
   const {
     ref: heightRef,
-    height,
   } = useGetComponentDimension();
   const classes = useStyles();
   return (
