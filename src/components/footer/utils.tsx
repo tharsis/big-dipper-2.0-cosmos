@@ -1,51 +1,32 @@
-const FORBOLE_URL = 'https://www.forbole.com';
-const BIG_DIPPER_URL = 'https://bigdipper.live';
+const THARSIS_URL = 'https://www.thars.is';
+const EVMOS_URL = 'https://evmos.org/';
+const EVMEXPLORER_URL = 'https://evm.evmos.org/';
 
-export const donateLink = {
-  key: 'donate',
-  url: `${BIG_DIPPER_URL}/donate`,
-};
+// export const donateLink = {
+//   key: 'donate',
+//   url: `${BIG_DIPPER_URL}/donate`,
+// };
 
 export const footerLinks = [
   {
-    key: 'company',
+    key: 'evmos',
     links: [
       {
-        key: 'forbole',
-        url: FORBOLE_URL,
+        key: 'evmos',
+        url: EVMOS_URL,
       },
       {
-        key: 'stakeNow',
-        url: `${FORBOLE_URL}/stake-now`,
-      },
-      {
-        key: 'contact',
-        url: `${FORBOLE_URL}/contact`,
-      },
-      {
-        key: 'blog',
-        url: `${FORBOLE_URL}/blog`,
+        key: 'evmexplorer',
+        url: EVMEXPLORER_URL,
       },
     ],
   },
   {
-    key: 'bigDipper',
+    key: 'company',
     links: [
       {
-        key: 'about',
-        url: `${BIG_DIPPER_URL}/#about`,
-      },
-      {
-        key: 'faq',
-        url: `${BIG_DIPPER_URL}/faq`,
-      },
-      {
-        key: 'termsAndConditions',
-        url: `${BIG_DIPPER_URL}/terms-and-conditions`,
-      },
-      {
-        key: 'privacyPolicy',
-        url: `${BIG_DIPPER_URL}/privacy-policy`,
+        key: 'tharsis',
+        url: THARSIS_URL,
       },
     ],
   },

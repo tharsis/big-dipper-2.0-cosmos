@@ -1,7 +1,5 @@
 import React from 'react';
 import * as R from 'ramda';
-import BigDipperLogoWhite from '@assets/big-dipper-white.svg';
-import BigDipperLogoRed from '@assets/big-dipper-red.svg';
 import { useSettingsContext } from '@contexts';
 import { LinearProgress } from '@material-ui/core';
 import { chainConfig } from '@configs';
@@ -24,11 +22,6 @@ const InitialLoad = () => {
         )}
         </div>
         <LinearProgress className={classes.divider} />
-        {theme === 'light' ? (
-          <BigDipperLogoRed />
-        ) : (
-          <BigDipperLogoWhite />
-        )}
       </div>
     </div>
   );

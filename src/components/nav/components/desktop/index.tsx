@@ -6,8 +6,7 @@ import {
   ClickAwayListener,
 } from '@material-ui/core';
 import { useSettingsContext } from '@contexts';
-import BigDipperLogoWhite from '@assets/big-dipper-white.svg';
-import BigDipperLogoRed from '@assets/big-dipper-red.svg';
+import EvmosLogo from '@assets/evmos-white-logo.svg';
 import { useStyles } from './styles';
 import { useDesktop } from './hooks';
 import {
@@ -64,13 +63,13 @@ const Desktop: React.FC<{
           }}
         >
           {theme === 'light' ? (
-            <BigDipperLogoRed
-              className={classes.logo}
+            <EvmosLogo
+              className={classes.logoblack}
               onClick={toggleMenu}
               role="button"
             />
           ) : (
-            <BigDipperLogoWhite
+            <EvmosLogo
               className={classes.logo}
               onClick={toggleMenu}
               role="button"

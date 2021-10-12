@@ -4,7 +4,7 @@ export const useStyles = () => {
   const styles = makeStyles(
     (theme) => {
       const OPEN_DRAWER_WIDTH = 230;
-      const CLOSED_DRAWER_WIDTH = 59;
+      const CLOSED_DRAWER_WIDTH = 51;
 
       return ({
         root: {
@@ -13,7 +13,14 @@ export const useStyles = () => {
           },
         },
         logo: {
-          width: '216px',
+          width: '230px',
+          padding: theme.spacing(2, 1.75, 2.5),
+          '&:hover': {
+            cursor: 'pointer',
+          },
+        },
+        logoblack: {
+          width: '230px',
           padding: theme.spacing(2, 1.75, 2.5),
           '&:hover': {
             cursor: 'pointer',

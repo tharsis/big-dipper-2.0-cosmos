@@ -1,21 +1,17 @@
 import React from 'react';
 import classnames from 'classnames';
-import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
-import FooterLogoLight from '@assets/big-dipper-red.svg';
-import FooterLogoDark from '@assets/big-dipper-white.svg';
+import EvmosLogo from '@assets/evmos-white-logo.svg';
 import {
-  Button,
   Divider,
-  Typography,
 } from '@material-ui/core';
 import {
-  chainConfig, generalConfig,
+  chainConfig,
 } from '@src/configs';
 import { useSettingsContext } from '@contexts';
 import { SocialMedia } from './components';
 import {
-  footerLinks, donateLink,
+  footerLinks,
 } from './utils';
 import { useStyles } from './styles';
 
@@ -27,7 +23,6 @@ const Footer: React.FC<{className?: string}> = ({ className }) => {
   // ============================
   // Footer
   // ============================
-  const year = new Date().getFullYear();
 
   return (
     <div className={classnames(className, classes.root)}>
@@ -37,9 +32,9 @@ const Footer: React.FC<{className?: string}> = ({ className }) => {
         {/* ============================= */}
         <div className="footer__logo--container">
           {theme === 'light' ? (
-            <FooterLogoLight className="footer__logo" />
+            <EvmosLogo className="footer__logo" />
           ) : (
-            <FooterLogoDark className="footer__logo" />
+            <EvmosLogo className="footer__logo" />
           )}
           <p className="footer__slogan">{chainConfig.title}</p>
         </div>
@@ -74,62 +69,11 @@ const Footer: React.FC<{className?: string}> = ({ className }) => {
           <div className="footer__social">
             <h3>{t('common:community')}</h3>
             <SocialMedia />
-            <div>
-              <p className="footer__donate--excerpt">{t('common:donateExcerpt')}</p>
-              <a
-                href={donateLink.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Button
-                  className="footer__donate-button"
-                  variant="contained"
-                  color="primary"
-                >
-                  {t('common:donate')}
-                </Button>
-              </a>
-            </div>
+            <div />
           </div>
         </div>
       </div>
       <Divider />
-      <div className="footer__closing--container">
-        <Typography className="footer__closing--text">
-          <Trans
-            i18nKey="common:copyright"
-            components={[
-              (
-                // eslint-disable-next-line
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://raw.githubusercontent.com/forbole/big-dipper-2.0-cosmos/master/LICENSE"
-                />
-              ),
-            ]}
-            values={{
-              name: generalConfig.maintainer.name,
-            }}
-          />
-          {' '}
-          {year}
-        </Typography>
-        <Typography className="footer__closing--text">
-          <Trans
-            i18nKey="common:maintainBy"
-            components={[
-              (
-                // eslint-disable-next-line
-                <a target="_blank" rel="noreferrer" href={generalConfig.maintainer.url} />
-              ),
-            ]}
-            values={{
-              name: generalConfig.maintainer.name,
-            }}
-          />
-        </Typography>
-      </div>
     </div>
   );
 };
