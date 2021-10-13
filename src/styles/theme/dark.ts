@@ -47,7 +47,7 @@ export const darkThemeOverride = {
       primaryData: {
         one: '#444444',
         two: '#555555',
-        three: '#66666',
+        three: '#666666',
         four: '#777777',
       },
       results: {
