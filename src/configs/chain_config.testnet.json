@@ -16,9 +16,9 @@
   },
   "primaryTokenUnit": "evmos",
   "tokenUnits": {
-    "udaric": {
-      "display": "daric",
-      "exponent": 6
+    "aphoton": {
+      "display": "photon",
+      "exponent": 18
     }
   },
   "extra": {
