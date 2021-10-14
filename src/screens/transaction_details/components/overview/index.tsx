@@ -33,7 +33,7 @@ const Overview: React.FC<{
       detail: (
         evmhash === "" ? data.hash:
         <Link href={BLOCKSCOUT(evmhash)} passHref>
-          <Typography variant="body1" className="value">
+          <Typography variant="body1" className="value" component="a">
             {evmhash}
           </Typography>
         </Link>

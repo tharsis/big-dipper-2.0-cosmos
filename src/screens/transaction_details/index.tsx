@@ -26,10 +26,10 @@ const TransactionDetails = () => {
     messages,
   } = state;
 
-  const filteredMessages = filterMessages(messages.items)
   var evmhash = ""
-  if (filteredMessages.length > 1 && 'hash' in filteredMessages[0])
-    evmhash = filteredMessages[0]['hash']
+  const filteredMessages = filterMessages(messages.items)
+  if (filteredMessages.length >= 1 && '@type' in filteredMessages[0]['json'] && filteredMessages[0]['json']['@type'] ==="/ethermint.evm.v1.MsgEthereumTx")
+    evmhash = filteredMessages[0]['json']['hash']
 
   return (
     <>
