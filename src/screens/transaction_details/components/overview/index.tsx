@@ -5,7 +5,7 @@ import Link from 'next/link';
 import dayjs, { formatDayJs } from '@utils/dayjs';
 import { Typography } from '@material-ui/core';
 import useTranslation from 'next-translate/useTranslation';
-import { BLOCK_DETAILS } from '@utils/go_to_page';
+import { BLOCK_DETAILS, BLOCKSCOUT } from '@utils/go_to_page';
 import { useSettingsContext } from '@contexts';
 import {
   BoxDetails, Result,
@@ -16,8 +16,9 @@ import { OverviewType } from '../../types';
 const Overview: React.FC<{
   className?: string;
   data: OverviewType;
+  evmhash: string
 }> = ({
-  className, data,
+  className, data, evmhash
 }) => {
   const { t } = useTranslation('transactions');
   const classes = useStyles();
@@ -25,10 +26,18 @@ const Overview: React.FC<{
     dateFormat,
   } = useSettingsContext();
 
+
   const details = [
     {
       label: t('hash'),
-      detail: data.hash,
+      detail: (
+        evmhash === "" ? data.hash:
+        <Link href={BLOCKSCOUT(evmhash)} passHref>
+          <Typography variant="body1" className="value">
+            {evmhash}
+          </Typography>
+        </Link>
+      ),
     },
     {
       label: t('height'),
