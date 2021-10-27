@@ -26,6 +26,11 @@ const TransactionDetails = () => {
     messages,
   } = state;
 
+  var evmhash = ""
+  const filteredMessages = filterMessages(messages.items)
+  if (filteredMessages.length >= 1 && '@type' in filteredMessages[0]['json'] && filteredMessages[0]['json']['@type'] ==="/ethermint.evm.v1.MsgEthereumTx")
+    evmhash = filteredMessages[0]['json']['hash']
+
   return (
     <>
       <NextSeo
@@ -42,10 +47,11 @@ const TransactionDetails = () => {
           <span className={classes.root}>
             <Overview
               data={overview}
+              evmhash={evmhash}
             />
             <Messages
               className={classes.messages}
-              messages={filterMessages(messages.items)}
+              messages={filteredMessages}
               viewRaw={messages.viewRaw}
               toggleMessageDisplay={toggleMessageDisplay}
               onMessageFilterCallback={onMessageFilterCallback}
