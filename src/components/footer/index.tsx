@@ -17,7 +17,6 @@ import {
 } from './utils';
 import { useStyles } from './styles';
 
-
 const Footer: React.FC<{className?: string}> = ({ className }) => {
   const { t } = useTranslation();
   const classes = useStyles();
