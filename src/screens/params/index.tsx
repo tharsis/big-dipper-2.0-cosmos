@@ -14,6 +14,7 @@ import {
   formatMinting,
   formatDistribution,
   formatGov,
+  formatEvm,
 } from './utils';
 
 const Params = () => {
@@ -39,6 +40,11 @@ const Params = () => {
   const distribution = state.distribution ? {
     title: t('distribution'),
     details: formatDistribution(state.distribution, t),
+  } : null;
+
+  const evm = state.evm ? {
+    title: t('evm'),
+    details: formatEvm(state.evm, t),
   } : null;
 
   const gov = state.gov ? {
@@ -78,6 +84,9 @@ const Params = () => {
             )}
             {gov && (
             <BoxDetails {...gov} />
+            )}
+            {evm && (
+            <BoxDetails {...evm} />
             )}
           </span>
         </LoadAndExist>

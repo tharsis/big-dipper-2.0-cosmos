@@ -3451,6 +3451,14 @@ export type Distribution_Params = {
   params: Scalars['jsonb'];
 };
 
+/** columns and relationships of "evm_params" */
+export type Evm_Params = {
+  __typename?: 'evm_params';
+  height: Scalars['bigint'];
+  one_row_id: Scalars['Boolean'];
+  params: Scalars['jsonb'];
+};
+
 
 /** columns and relationships of "distribution_params" */
 export type Distribution_ParamsParamsArgs = {
@@ -18259,7 +18267,10 @@ export type ParamsQuery = { stakingParams: Array<(
   )>, distributionParams: Array<(
     { __typename?: 'distribution_params' }
     & Pick<Distribution_Params, 'params'>
-  )>, govParams: Array<(
+  )>, evmParams: Array<(
+    { __typename?: 'evm_params' }
+    & Pick<Evm_Params, 'params' | 'height'>
+  )>,govParams: Array<(
     { __typename?: 'gov_params' }
     & { depositParams: Gov_Params['deposit_params'], tallyParams: Gov_Params['tally_params'], votingParams: Gov_Params['voting_params'] }
   )> };
@@ -19187,6 +19198,10 @@ export const ParamsDocument = gql`
   distributionParams: distribution_params(limit: 1, order_by: {height: desc}) {
     params
   }
+  evmParams: evm_params(limit: 1, order_by: {height: desc}) {
+    params
+    height
+  }
   govParams: gov_params(limit: 1, order_by: {height: desc}) {
     depositParams: deposit_params
     tallyParams: tally_params
@@ -19431,7 +19446,7 @@ export const TransactionDetailsDocument = gql`
       timestamp: timestamp
     }
     fee: fee
-    gasUsed: gas_used
+    gasUsed: gas_usedunbonding
     gasWanted: gas_wanted
     success: success
     memo: memo

@@ -13,6 +13,7 @@ import {
   MintParams,
   DistributionParams,
   GovParams,
+  EvmParams,
 } from '@models';
 import {
   ParamsState,
@@ -26,6 +27,7 @@ const initialState = {
   minting: null,
   distribution: null,
   gov: null,
+  evm: null,
 };
 
 export const useParams = () => {
@@ -135,6 +137,42 @@ export const useParams = () => {
     };
 
     results.distribution = formatDistribution();
+
+    // ================================
+    // evm
+    // ================================
+
+    const formatEvm = () => {
+      if (data.evmParams.length) {
+        const evmParamsRaw = EvmParams.fromJson(R.pathOr({}, ['evmParams', 0, 'params'], data));
+        const evmHeight = R.pathOr({}, ['evmParams', 0, 'height'], data);
+        return {
+          evmDenom: evmParamsRaw.evmDenom,
+          enableCall: evmParamsRaw.enableCall,
+          enableCreate: evmParamsRaw.enableCreate,
+          //chainConfig: evmParamsRaw.chainConfig,
+          berlinBlock :evmParamsRaw.berlinBlock,
+          byzantiumBlock :evmParamsRaw.byzantiumBlock,
+          constantinopleBlock :evmParamsRaw.constantinopleBlock,
+          daoForkBlock :evmParamsRaw.daoForkBlock,
+          daoForkSupport : evmParamsRaw.daoForkSupport,
+          eip150Block :evmParamsRaw.eip150Block,
+          eip150Hash :evmParamsRaw.eip150Hash,
+          eip155Block :evmParamsRaw.eip155Block,
+          eip158Block :evmParamsRaw.eip158Block,
+          homesteadBlock :evmParamsRaw.homesteadBlock,
+          istanbulBlock :evmParamsRaw.istanbulBlock,
+          londonBlock :evmParamsRaw.londonBlock,
+          muirGlacierBlock :evmParamsRaw.muirGlacierBlock,
+          petersburgBlock :evmParamsRaw.petersburgBlock,
+          evmHeight : evmHeight
+        };
+      }
+
+      return null;
+    };
+
+    results.evm = formatEvm();
 
     // ================================
     // distribution
