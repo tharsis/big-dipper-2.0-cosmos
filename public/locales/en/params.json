@@ -51,5 +51,20 @@
   "istanbulBlock": "Istanbul Block",
   "londonBlock": "London Block",
   "muirGlacierBlock": "Muir Glacier Block",
-  "petersburgBlock": "Petersburg Block"
+  "petersburgBlock": "Petersburg Block",
+
+  "berlinUpgrade": "Berlin Upgrade",
+  "byzantiumUpgrade": "Byzantium Upgrade",
+  "constantinopleUpgrade": "Constantinople Upgrade",
+  "daoForkUpgrade": "Dao Fork Upgrade",
+
+  "eip150Upgrade": "Eip150 Upgrade",
+
+  "eip155Upgrade": "Eip155 Upgrade",
+  "eip158Upgrade": "Eip158 Upgrade",
+  "homesteadUpgrade": "Homestead Upgrade",
+  "istanbulUpgrade": "Istanbul Upgrade",
+  "londonUpgrade": "London Upgrade",
+  "muirGlacierUpgrade": "Muir Glacier Upgrade",
+  "petersburgUpgrade": "Petersburg Upgrade"
 }

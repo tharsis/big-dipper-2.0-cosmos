@@ -13,6 +13,7 @@ query Params {
   }
   evmParams: evm_params(limit: 1, order_by: {height: desc}) {
     params
+    height
   }
   govParams: gov_params (limit: 1, order_by: {height: desc}) {
     depositParams: deposit_params

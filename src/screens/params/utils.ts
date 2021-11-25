@@ -124,68 +124,68 @@ export const formatEvm = (data: Evm, t: any) => {
     },
     {
       label: t('enableCreate'),
-      detail: `${data.enableCreate}`,
+      detail: `${data.enableCreate}`.toUpperCase(),
     },
     {
       label: t('enableCall'),
-      detail: `${data.enableCall}`,
+      detail: `${data.enableCall}`.toUpperCase(),
     },
     {
-      label: t('berlinBlock'),
-      detail: `${data.berlinBlock}`,
+      label: data.berlinBlock <= data.evmHeight? t('berlinUpgrade'): t('berlinBlock'),
+      detail: `${data.berlinBlock <= data.evmHeight ? 'Enabled' : data.berlinBlock}`,
     },
     {
-      label: t('byzantiumBlock'),
-      detail: `${data.byzantiumBlock}`,
+      label: data.byzantiumBlock <= data.evmHeight? t('byzantiumUpgrade'): t('byzantiumBlock'), 
+      detail: `${data.byzantiumBlock <= data.evmHeight ? 'Enabled' : data.byzantiumBlock}`,
     },
     {
-      label: t('constantinopleBlock'),
-      detail: `${data.constantinopleBlock}`,
+      label: data.constantinopleBlock <= data.evmHeight? t('constantinopleUpgrade'): t('constantinopleBlock'), 
+      detail: `${data.constantinopleBlock <= data.evmHeight ? 'Enabled' : data.constantinopleBlock}`,
     },
     {
-      label: t('daoForkBlock'),
-      detail: `${data.daoForkBlock}`,
+      label: data.daoForkBlock <= data.evmHeight? t('daoForkUpgrade'): t('daoForkBlock'),
+      detail: `${data.daoForkBlock <= data.evmHeight ? 'Enabled' : data.daoForkBlock}`,
     },
     {
       label: t('daoForkSupport'),
-      detail: `${data.daoForkSupport}`,
+      detail: `${data.daoForkSupport}`.toUpperCase(),
     },
     {
-      label: t('eip150Block'),
-      detail: `${data.eip150Block}`,
+      label: data.eip150Block <= data.evmHeight? t('eip150Upgrade'): t('eip150Block'),
+      detail: `${data.eip150Block<= data.evmHeight ? 'Enabled' : data.eip150Block}`,
     },
     {
       label: t('eip150Hash'),
       detail: `${data.eip150Hash}`,
     },
     {
-      label: t('eip155Block'),
-      detail: `${data.eip155Block}`,
+      label: data.eip155Block <= data.evmHeight? t('eip155Upgrade'): t('eip155Block'),
+      detail: `${data.eip155Block<= data.evmHeight ? 'Enabled' : data.eip155Block}`,
     },
     {
-      label: t('eip158Block'),
-      detail: `${data.eip158Block}`,
+      label: data.eip158Block <= data.evmHeight? t('eip158Upgrade'): t('eip158Block'),
+      detail: `${data.eip158Block<= data.evmHeight ? 'Enabled' : data.eip158Block}`,
     },
 
     {
-      label: t('homesteadBlock'),
-      detail: `${data.homesteadBlock}`,
+      label: data.homesteadBlock <= data.evmHeight? t('homesteadUpgrade'): t('homesteadBlock'),
+      detail: `${data.homesteadBlock<= data.evmHeight ? 'Enabled' : data.homesteadBlock}`,
     },
     {
-      label: t('istanbulBlock'),
-      detail: `${data.istanbulBlock}`,
+      label: data.istanbulBlock <= data.evmHeight? t('istanbulUpgrade'): t('istanbulBlock'),
+      detail: `${data.istanbulBlock<= data.evmHeight ? 'Enabled' : data.istanbulBlock}`,
     },
     {
-      label: t('londonBlock'),
-      detail: `${data.londonBlock}`,
+      label: data.londonBlock <= data.evmHeight? t('londonUpgrade'): t('londonBlock'),
+      detail: `${data.londonBlock<= data.evmHeight ? 'Enabled' : data.londonBlock}`,
     },
     {
-      label: t('muirGlacierBlock'),
-      detail: `${data.muirGlacierBlock}`,
+      label: data.muirGlacierBlock <= data.evmHeight? t('muirGlacierUpgrade'): t('muirGlacierBlock'),
+      detail: `${data.muirGlacierBlock<= data.evmHeight ? 'Enabled' : data.muirGlacierBlock}`,
     },
     {
-      label: t('petersburgBlock'),
-      detail: `${data.petersburgBlock}`,
+      label: data.petersburgBlock <= data.evmHeight? t('petersburgUpgrade'): t('petersburgBlock'),
+      detail: `${data.petersburgBlock<= data.evmHeight ? 'Enabled' : data.petersburgBlock}`,
     },
   ]);
 };

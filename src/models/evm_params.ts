@@ -23,23 +23,6 @@ class EvmParams {
     public londonBlock : number
     public muirGlacierBlock : number
     public petersburgBlock : number
-    
-// berlin_block: "0"
-// byzantium_block: "0"
-// constantinople_block: "0"
-// dao_fork_block: "0"
-// dao_fork_support: true
-
-// eip150_block: "0"
-// eip150_hash: "0x0000000000000000000000000000000000000000000000000000000000000000"
-// eip155_block: "0"
-// eip158_block: "0"
-// homestead_block: "0"
-// istanbul_block: "0"
-// london_block: "0"
-// muir_glacier_block: "0"
-// petersburg_block: "0
-
 
   constructor(payload: any) {
     this.evmDenom = payload.evmDenom;

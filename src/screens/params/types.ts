@@ -58,6 +58,7 @@ export type Evm = {
   londonBlock : number
   muirGlacierBlock : number
   petersburgBlock : number
+  evmHeight : number
 }
 
 

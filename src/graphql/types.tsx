@@ -18269,8 +18269,8 @@ export type ParamsQuery = { stakingParams: Array<(
     & Pick<Distribution_Params, 'params'>
   )>, evmParams: Array<(
     { __typename?: 'evm_params' }
-    & Pick<Evm_Params, 'params'>
-  )>, govParams: Array<(
+    & Pick<Evm_Params, 'params' | 'height'>
+  )>,govParams: Array<(
     { __typename?: 'gov_params' }
     & { depositParams: Gov_Params['deposit_params'], tallyParams: Gov_Params['tally_params'], votingParams: Gov_Params['voting_params'] }
   )> };
@@ -19200,6 +19200,7 @@ export const ParamsDocument = gql`
   }
   evmParams: evm_params(limit: 1, order_by: {height: desc}) {
     params
+    height
   }
   govParams: gov_params(limit: 1, order_by: {height: desc}) {
     depositParams: deposit_params
@@ -19445,7 +19446,7 @@ export const TransactionDetailsDocument = gql`
       timestamp: timestamp
     }
     fee: fee
-    gasUsed: gas_used
+    gasUsed: gas_usedunbonding
     gasWanted: gas_wanted
     success: success
     memo: memo

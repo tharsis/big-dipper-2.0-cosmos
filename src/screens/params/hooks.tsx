@@ -145,6 +145,7 @@ export const useParams = () => {
     const formatEvm = () => {
       if (data.evmParams.length) {
         const evmParamsRaw = EvmParams.fromJson(R.pathOr({}, ['evmParams', 0, 'params'], data));
+        const evmHeight = R.pathOr({}, ['evmParams', 0, 'height'], data);
         return {
           evmDenom: evmParamsRaw.evmDenom,
           enableCall: evmParamsRaw.enableCall,
@@ -164,6 +165,7 @@ export const useParams = () => {
           londonBlock :evmParamsRaw.londonBlock,
           muirGlacierBlock :evmParamsRaw.muirGlacierBlock,
           petersburgBlock :evmParamsRaw.petersburgBlock,
+          evmHeight : evmHeight
         };
       }
 
