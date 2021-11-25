@@ -39,6 +39,28 @@ export type Gov = {
   votingPeriod: number;
 }
 
+export type Evm = {
+  evmDenom: string;
+  enableCreate: boolean;
+  enableCall: boolean;
+  chainConfig: string;
+  berlinBlock : number
+  byzantiumBlock : number
+  constantinopleBlock : number
+  daoForkBlock : number
+  daoForkSupport : boolean
+  eip150Block : number
+  eip150Hash : string
+  eip155Block : number
+  eip158Block : number
+  homesteadBlock : number
+  istanbulBlock : number
+  londonBlock : number
+  muirGlacierBlock : number
+  petersburgBlock : number
+}
+
+
 export type ParamsState = {
   loading: boolean;
   exists: boolean;
@@ -47,4 +69,5 @@ export type ParamsState = {
   minting: Minting | null;
   distribution: Distribution | null;
   gov: Gov | null;
+  evm: Evm | null; 
 }

@@ -8,6 +8,7 @@ import {
   Minting,
   Distribution,
   Gov,
+  Evm,
 } from './types';
 
 export const formatStaking = (data: Staking, t: any) => {
@@ -110,6 +111,81 @@ export const formatDistribution = (data: Distribution, t: any) => {
     {
       label: t('withdrawAddressEnabled'),
       detail: `${data.withdrawAddressEnabled}`.toUpperCase(),
+    },
+  ]);
+};
+
+
+export const formatEvm = (data: Evm, t: any) => {
+  return ([
+    {
+      label: t('evmDenom'),
+      detail: `${data.evmDenom}`,
+    },
+    {
+      label: t('enableCreate'),
+      detail: `${data.enableCreate}`,
+    },
+    {
+      label: t('enableCall'),
+      detail: `${data.enableCall}`,
+    },
+    {
+      label: t('berlinBlock'),
+      detail: `${data.berlinBlock}`,
+    },
+    {
+      label: t('byzantiumBlock'),
+      detail: `${data.byzantiumBlock}`,
+    },
+    {
+      label: t('constantinopleBlock'),
+      detail: `${data.constantinopleBlock}`,
+    },
+    {
+      label: t('daoForkBlock'),
+      detail: `${data.daoForkBlock}`,
+    },
+    {
+      label: t('daoForkSupport'),
+      detail: `${data.daoForkSupport}`,
+    },
+    {
+      label: t('eip150Block'),
+      detail: `${data.eip150Block}`,
+    },
+    {
+      label: t('eip150Hash'),
+      detail: `${data.eip150Hash}`,
+    },
+    {
+      label: t('eip155Block'),
+      detail: `${data.eip155Block}`,
+    },
+    {
+      label: t('eip158Block'),
+      detail: `${data.eip158Block}`,
+    },
+
+    {
+      label: t('homesteadBlock'),
+      detail: `${data.homesteadBlock}`,
+    },
+    {
+      label: t('istanbulBlock'),
+      detail: `${data.istanbulBlock}`,
+    },
+    {
+      label: t('londonBlock'),
+      detail: `${data.londonBlock}`,
+    },
+    {
+      label: t('muirGlacierBlock'),
+      detail: `${data.muirGlacierBlock}`,
+    },
+    {
+      label: t('petersburgBlock'),
+      detail: `${data.petersburgBlock}`,
     },
   ]);
 };

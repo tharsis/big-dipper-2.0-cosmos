@@ -3582,6 +3582,15 @@ export type Distribution_Params = {
   params: Scalars['jsonb'];
 };
 
+/** columns and relationships of "evm_params" */
+export type Evm_Params = {
+  __typename?: 'evm_params';
+  height: Scalars['bigint'];
+  one_row_id: Scalars['Boolean'];
+  params: Scalars['jsonb'];
+};
+
+
 
 /** columns and relationships of "distribution_params" */
 export type Distribution_ParamsParamsArgs = {
@@ -9922,6 +9931,8 @@ export type Query_Root = {
   delegation_reward_aggregate: Delegation_Reward_Aggregate;
   /** fetch data from the table: "distribution_params" */
   distribution_params: Array<Distribution_Params>;
+  /** fetch data from the table: "evm_params" */
+  evm_params: Array<Evm_Params>;
   /** fetch aggregated fields from the table: "distribution_params" */
   distribution_params_aggregate: Distribution_Params_Aggregate;
   /** fetch data from the table: "distribution_params" using primary key columns */
