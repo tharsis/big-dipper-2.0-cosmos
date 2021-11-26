@@ -19446,7 +19446,7 @@ export const TransactionDetailsDocument = gql`
       timestamp: timestamp
     }
     fee: fee
-    gasUsed: gas_usedunbonding
+    gasUsed: gas_used
     gasWanted: gas_wanted
     success: success
     memo: memo
