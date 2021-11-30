@@ -10,6 +10,7 @@ import { Box } from '@components';
 import { BLOCK_DETAILS } from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { VotingPowerType } from '../../types';
+import { formatDenom } from '@utils/format_denom';
 
 const VotingPower: React.FC<{
   className?: string;
@@ -19,13 +20,12 @@ const VotingPower: React.FC<{
   data,
 }) => {
   const { t } = useTranslation('validators');
+  let votingPower = formatDenom(numeral(data.self), "aphoton").value
   const votingPowerPercent = numeral((
-    data.self / data.overall.value) * 100);
+    votingPower / data.overall.value) * 100);
 
   const classes = useStyles(votingPowerPercent.format(0, Math.floor));
-
-  const votingPower = numeral(data.self).format('0,0');
-
+ 
   return (
     <Box className={classnames(className, classes.root)}>
       <Typography variant="h2">

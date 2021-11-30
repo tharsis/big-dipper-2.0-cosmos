@@ -236,7 +236,7 @@ export const useProposalDetails = () => {
       no,
       abstain,
       veto,
-      total: yes + no + abstain + veto,
+      total: BigInt(yes) + BigInt(no) + BigInt(abstain) + BigInt(veto),
       denom: stakingParams.bondDenom,
       quorum: percent,
       bondedTokens: formatDenom(
