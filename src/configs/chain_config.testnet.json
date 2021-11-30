@@ -14,7 +14,7 @@
     "time": "2021-07-13T08:00:00",
     "height": 1
   },
-  "primaryTokenUnit": "evmos",
+  "primaryTokenUnit": "aphoton",
   "tokenUnits": {
     "aphoton": {
       "display": "photon",
