@@ -13,6 +13,7 @@ import { replaceNaN } from '@utils/replace_nan';
 import { useStyles } from './styles';
 import { formatGraphData } from './utils';
 import { TallyType } from '../../types';
+import { formatDenom } from '@utils/format_denom';
 
 const VotesGraph: React.FC<{
   className?: string;
@@ -24,6 +25,7 @@ const VotesGraph: React.FC<{
     classes, theme,
   } = useStyles();
   const { t } = useTranslation('proposals');
+
   let formattedData = formatGraphData(data, theme);
 
   const empty = {
@@ -36,9 +38,11 @@ const VotesGraph: React.FC<{
   const notEmpty = formattedData.some((x) => x.value > 0);
   formattedData = notEmpty ? formattedData : [...formattedData, empty];
 
+  let format = formatDenom(data.total, "aphoton")
+
   const quorumPercent = `${numeral(data.quorum * 100).value()}%`; // correct
-  const votePercent = replaceNaN(`${numeral((data.total / data.bondedTokens) * 100).format('0.[00]')}%`);
-  const voteAmount = numeral(data.total).format('0,0.[00]');
+  const votePercent = format.value < 1? '0%' : replaceNaN(`${numeral((BigInt(format.value) / BigInt(data.bondedTokens)) * BigInt(100)).format('0.[00]')}%`);
+  const voteAmount = numeral(format.value).format('0,0.[00]');
   const quorumAmount = numeral((data.bondedTokens * (data.quorum * 100)) / 100).format('0,0.[00]');
 
   return (
