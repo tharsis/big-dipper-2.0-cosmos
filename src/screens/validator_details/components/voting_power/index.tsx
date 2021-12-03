@@ -20,9 +20,12 @@ const VotingPower: React.FC<{
   data,
 }) => {
   const { t } = useTranslation('validators');
-  let votingPower = formatDenom(numeral(data.self), "aphoton").value
+  let votingPower = formatDenom(data.self, "pphoton")
+
   const votingPowerPercent = numeral((
-    votingPower / data.overall.value) * 100);
+    votingPower.value / data.overall.value) * 100);
+
+  votingPower = numeral(votingPower.value).format('0,0.[0000]')
 
   const classes = useStyles(votingPowerPercent.format(0, Math.floor));
  
@@ -33,7 +36,7 @@ const VotingPower: React.FC<{
       </Typography>
       <div className={classes.data}>
         <Typography variant="h3" className="primary__data">
-          {`${votingPowerPercent.format('0,0.00')}%`}
+          {`${votingPowerPercent.format('0,0.[00]')}%`}
         </Typography>
         <Typography variant="body1">
           {votingPower}

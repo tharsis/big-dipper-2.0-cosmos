@@ -15,6 +15,7 @@ import {
 import {
   ValidatorsState, ValidatorType,
 } from './types';
+import { VotingPower } from '@src/screens/validator_details/components';
 
 export const useValidators = () => {
   const { findAddress } = useChainContext();
@@ -60,8 +61,10 @@ export const useValidators = () => {
 
     const formattedItems = data.validator.filter((x) => x.validatorInfo).map((x) => {
       const validator = findAddress(x.validatorInfo.operatorAddress);
-      const votingPower = R.pathOr(0, ['validatorVotingPowers', 0, 'votingPower'], x);
-      const votingPowerPercent = numeral((votingPower / votingPowerOverall) * 100).value();
+      let votingPower = R.pathOr(0, ['validatorVotingPowers', 0, 'votingPower'], x);
+      votingPower = formatDenom(votingPower, "pphoton");
+      const votingPowerPercent = numeral((votingPower.value / votingPowerOverall) * 100).value();
+      votingPower = numeral(votingPower.value).format(votingPower.format)
       const totalDelegations = x.delegations.reduce((a, b) => {
         return a + numeral(R.pathOr(0, ['amount', 'amount'], b)).value();
       }, 0);
