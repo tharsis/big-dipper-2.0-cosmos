@@ -56,9 +56,9 @@ const Desktop: React.FC<{
       ),
       votingPower: (
         <VotingPower
-          percentDisplay={`${numeral(x.votingPowerPercent).format('0.[00]')}%`}
+          percentDisplay={`${numeral(x.votingPowerPercent).format('0,0.0[00]')}%`}
           percentage={x.votingPowerPercent}
-          content={numeral(x.votingPower).format('0,0')}
+          content={numeral(x.votingPower).format('0,0.[00]')}
         />
       ),
     });
