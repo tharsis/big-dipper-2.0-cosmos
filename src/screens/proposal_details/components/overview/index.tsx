@@ -20,6 +20,7 @@ import {
 } from './components';
 import { useStyles } from './styles';
 import { getProposalType } from '../../utils';
+import RegisterCoin from './components/register_coin';
 
 const Overview: React.FC<{
   className?: string;
@@ -69,7 +70,22 @@ const Overview: React.FC<{
           />
         </>
       );
-    }
+    } else if (type === 'registerCoinProposal') {
+    extraDetails = (
+      <>
+        <Typography variant="body1" className="label">
+          {t('coin')}
+        </Typography>
+        <RegisterCoin
+          base={R.pathOr('', ['metadata', 'base'], props.content)}
+          name={R.pathOr('', ['metadata', 'name'], props.content)}
+          symbol={R.pathOr('', ['metadata', 'symbol'], props.content)}
+          display={R.pathOr('', ['metadata', 'display'], props.content)}
+          denom_units={R.pathOr('', ['metadata', 'denom_units'], props.content)}
+        />
+      </>
+    );
+  }
 
     return extraDetails;
   };

@@ -25,6 +25,7 @@
   "votingEndTime": "Voting End Time",
   "votingStartTime": "Voting Start Time",
   "textProposal": "Text Proposal",
+  "registerCoinProposal": "Register Coin Proposal",
   "parameterChangeProposal": "Parameter Change Proposal",
   "communityPoolSpendProposal": "Community Pool Spend Proposal",
   "softwareUpgradeProposal": "Software Upgrade Proposal",
@@ -39,9 +40,17 @@
   "rejected": "Rejected",
   "failed": "Failed",
   "plan": "Plan",
+  "coin": "Coin",
   "name": "Name",
   "height": "Height",
   "info": "Info",
   "didNotVote": "Did not vote",
-  "notVoted": "Not Voted"
+  "notVoted": "Not Voted",
+  "base": "Base",
+  "symbol": "Symbol",
+  "denom_units": "Denom Units",
+  "display": "Display",
+  "denom": "Denom",
+  "aliases": "Aliases",
+  "exponent": "Exponent"
 }

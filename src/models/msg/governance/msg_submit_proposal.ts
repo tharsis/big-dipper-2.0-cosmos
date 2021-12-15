@@ -4,6 +4,7 @@ import {
   MsgSoftwareUpgradeProposal,
   MsgParameterChangeProposal,
   MsgCommunityPoolSpendProposal,
+  MsgRegisterCoinProposal,
 } from '../..';
 import { Categories } from '../types';
 
@@ -13,7 +14,8 @@ class MsgSubmitProposal {
   public content: MsgTextProposal
   | MsgSoftwareUpgradeProposal
   | MsgParameterChangeProposal
-  | MsgCommunityPoolSpendProposal;
+  | MsgCommunityPoolSpendProposal
+  | MsgRegisterCoinProposal;
   public initialDeposit: {
     denom: string;
     amount: string | number;
@@ -50,6 +52,10 @@ class MsgSubmitProposal {
       }
       case '/cosmos.distribution.v1beta1.CommunityPoolSpendProposal': {
         content = MsgCommunityPoolSpendProposal.fromJson(contentDetailsRaw);
+        break;
+      }
+      case '/evmos.intrarelayer.v1.RegisterCoinProposal': {
+        content = MsgRegisterCoinProposal.fromJson(contentDetailsRaw);
         break;
       }
       default:

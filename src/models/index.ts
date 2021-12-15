@@ -16,6 +16,7 @@ import MsgSubmitProposal from './msg/governance/msg_submit_proposal';
 import MsgSetWithdrawAddress from './msg/distribution/msg_set_withdrawal_address';
 import MsgWithdrawDelegatorReward from './msg/distribution/msg_withdrawal_delegator_reward';
 import MsgCommunityPoolSpendProposal from './msg/governance/msg_community_pool_spend_proposal';
+import MsgRegisterCoinProposal from './msg/governance/msg_register_coin_proposal';
 import MsgParameterChangeProposal from './msg/governance/msg_parameter_change_proposal';
 import MsgSoftwareUpgradeProposal from './msg/governance/msg_software_upgrade_proposal';
 import MsgTextProposal from './msg/governance/msg_text_proposal';
@@ -83,6 +84,7 @@ export {
   MsgSetWithdrawAddress,
   MsgWithdrawDelegatorReward,
   MsgCommunityPoolSpendProposal,
+  MsgRegisterCoinProposal,
   MsgParameterChangeProposal,
   MsgSoftwareUpgradeProposal,
   MsgTextProposal,
