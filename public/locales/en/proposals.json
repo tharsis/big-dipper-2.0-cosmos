@@ -26,6 +26,7 @@
   "votingStartTime": "Voting Start Time",
   "textProposal": "Text Proposal",
   "registerCoinProposal": "Register Coin Proposal",
+  "registerErc20Proposal": "Register ERC20 Proposal",
   "parameterChangeProposal": "Parameter Change Proposal",
   "communityPoolSpendProposal": "Community Pool Spend Proposal",
   "softwareUpgradeProposal": "Software Upgrade Proposal",
@@ -52,5 +53,7 @@
   "display": "Display",
   "denom": "Denom",
   "aliases": "Aliases",
-  "exponent": "Exponent"
+  "exponent": "Exponent",
+  "erc20": "ERC20",
+  "address": "Address"
 }

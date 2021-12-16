@@ -5,6 +5,7 @@ import {
   MsgParameterChangeProposal,
   MsgCommunityPoolSpendProposal,
   MsgRegisterCoinProposal,
+  MsgRegisterErc20Proposal,
 } from '../..';
 import { Categories } from '../types';
 
@@ -15,7 +16,8 @@ class MsgSubmitProposal {
   | MsgSoftwareUpgradeProposal
   | MsgParameterChangeProposal
   | MsgCommunityPoolSpendProposal
-  | MsgRegisterCoinProposal;
+  | MsgRegisterCoinProposal
+  | MsgRegisterErc20Proposal;
   public initialDeposit: {
     denom: string;
     amount: string | number;
@@ -37,6 +39,7 @@ class MsgSubmitProposal {
     const contentType = contentDetailsRaw?.['@type'];
     let content = null;
 
+    console.log(contentDetailsRaw)
     switch (contentType) {
       case '/cosmos.gov.v1beta1.TextProposal': {
         content = MsgTextProposal.fromJson(contentDetailsRaw);
@@ -56,6 +59,10 @@ class MsgSubmitProposal {
       }
       case '/evmos.intrarelayer.v1.RegisterCoinProposal': {
         content = MsgRegisterCoinProposal.fromJson(contentDetailsRaw);
+        break;
+      }
+      case '/evmos.intrarelayer.v1.RegisterERC20Proposal': {
+        content = MsgRegisterErc20Proposal.fromJson(contentDetailsRaw);
         break;
       }
       default:

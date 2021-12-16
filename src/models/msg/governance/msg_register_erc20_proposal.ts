@@ -1,4 +1,4 @@
-class MsgRegisterCoinProposal {
+class MsgRegisterErc20Proposal {
   public type: string;
   public title: string;
   public description: string;
@@ -25,26 +25,13 @@ class MsgRegisterCoinProposal {
 
   static fromJson(json: any) {
     console.log(json)
-    return new MsgRegisterCoinProposal({
+    return new MsgRegisterErc20Proposal({
       type: json['@type'],
       title: json.title,
       description: json.description,
       recipient: json.recipient,
-      metadata: {
-          base: json.metadata.base,
-          name: json.metadata.name,
-          symbol: json.metadata.symbol,
-          display: json.metadata.display,
-          denom_units: json?.metadata.denom_units.map((y) => {
-            return ({
-              denom: y?.denom,
-              aliases: y?.aliases,
-              exponent: y.exponent,
-            });
-      }),
-    },
     });
   }
 }
 
-export default MsgRegisterCoinProposal;
+export default MsgRegisterErc20Proposal;
