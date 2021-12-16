@@ -12,6 +12,14 @@ export const getProposalType = (proposalType: string) => {
     type = 'softwareUpgradeProposal';
   }
 
+  if (proposalType === '/evmos.intrarelayer.v1.RegisterCoinProposal') {
+    type = 'registerCoinProposal';
+  }
+
+  if (proposalType === '/evmos.intrarelayer.v1.RegisterERC20Proposal') {
+    type = 'registerErc20Proposal';
+  }
+
   return type;
 };
 

@@ -25,6 +25,8 @@
   "votingEndTime": "Voting End Time",
   "votingStartTime": "Voting Start Time",
   "textProposal": "Text Proposal",
+  "registerCoinProposal": "Register Coin Proposal",
+  "registerErc20Proposal": "Register ERC20 Proposal",
   "parameterChangeProposal": "Parameter Change Proposal",
   "communityPoolSpendProposal": "Community Pool Spend Proposal",
   "softwareUpgradeProposal": "Software Upgrade Proposal",
@@ -43,5 +45,15 @@
   "height": "Height",
   "info": "Info",
   "didNotVote": "Did not vote",
-  "notVoted": "Not Voted"
+  "notVoted": "Not Voted",
+  "coin": "Coin",
+  "base": "Base",
+  "symbol": "Symbol",
+  "denom_units": "Denom Units",
+  "display": "Display",
+  "denom": "Denom",
+  "aliases": "Aliases",
+  "exponent": "Exponent",
+  "erc20": "ERC20",
+  "address": "Address"
 }

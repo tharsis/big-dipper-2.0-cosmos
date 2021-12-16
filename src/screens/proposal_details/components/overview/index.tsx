@@ -17,6 +17,8 @@ import {
 import {
   ParamsChange,
   SoftwareUpgrade,
+  RegisterCoin,
+  RegisterErc20
 } from './components';
 import { useStyles } from './styles';
 import { getProposalType } from '../../utils';
@@ -69,7 +71,33 @@ const Overview: React.FC<{
           />
         </>
       );
-    }
+    } else if (type === 'registerCoinProposal') {
+    extraDetails = (
+      <>
+        <Typography variant="body1" className="label">
+          {t('coin')}
+        </Typography>
+        <RegisterCoin
+          base={R.pathOr('', ['metadata', 'base'], props.content)}
+          name={R.pathOr('', ['metadata', 'name'], props.content)}
+          symbol={R.pathOr('', ['metadata', 'symbol'], props.content)}
+          display={R.pathOr('', ['metadata', 'display'], props.content)}
+          denom_units={R.pathOr('', ['metadata', 'denom_units'], props.content)}
+        />
+      </>
+    );
+  } else if (type === 'registerErc20Proposal') {
+    extraDetails = (
+      <>
+        <Typography variant="body1" className="label">
+          {t('erc20')}
+        </Typography>
+        <RegisterErc20
+          address={R.pathOr('', ['erc20address'], props.content)}
+        />
+      </>
+    );
+  }
 
     return extraDetails;
   };
