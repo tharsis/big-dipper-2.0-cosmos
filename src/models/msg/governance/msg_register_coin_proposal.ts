@@ -24,7 +24,6 @@ class MsgRegisterCoinProposal {
   }
 
   static fromJson(json: any) {
-    console.log(json)
     return new MsgRegisterCoinProposal({
       type: json['@type'],
       title: json.title,
