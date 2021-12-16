@@ -23,7 +23,6 @@ import {
 import { useStyles } from './styles';
 import { getProposalType } from '../../utils';
 
-
 const Overview: React.FC<{
   className?: string;
   title: string;
