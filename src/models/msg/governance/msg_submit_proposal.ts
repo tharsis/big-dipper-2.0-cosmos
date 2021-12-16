@@ -39,7 +39,6 @@ class MsgSubmitProposal {
     const contentType = contentDetailsRaw?.['@type'];
     let content = null;
 
-    console.log(contentDetailsRaw)
     switch (contentType) {
       case '/cosmos.gov.v1beta1.TextProposal': {
         content = MsgTextProposal.fromJson(contentDetailsRaw);
